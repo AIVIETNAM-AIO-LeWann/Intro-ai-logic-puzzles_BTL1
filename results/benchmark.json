@@ -1,0 +1,376 @@
+{
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.22621-SP0",
+  "repeat": 5,
+  "scope": "search only, no UI/HTTP/trace; peak Python allocations, not RSS",
+  "results": [
+    {
+      "level": "pipes-3",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 0.49,
+      "runs_ms": [
+        0.516,
+        0.49,
+        0.533,
+        0.462,
+        0.432
+      ],
+      "expanded": 10,
+      "frontier_peak": 1,
+      "memory_status": "solved",
+      "peak_python_kib": 7.52
+    },
+    {
+      "level": "pipes-3",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 0.342,
+      "runs_ms": [
+        0.359,
+        0.342,
+        0.377,
+        0.303,
+        0.305
+      ],
+      "expanded": 10,
+      "frontier_peak": 1,
+      "memory_status": "solved",
+      "peak_python_kib": 7.52
+    },
+    {
+      "level": "pipes-4",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.305,
+      "runs_ms": [
+        1.305,
+        1.906,
+        1.241,
+        1.75,
+        1.176
+      ],
+      "expanded": 17,
+      "frontier_peak": 1,
+      "memory_status": "solved",
+      "peak_python_kib": 8.0
+    },
+    {
+      "level": "pipes-4",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.545,
+      "runs_ms": [
+        1.802,
+        1.545,
+        2.073,
+        1.273,
+        0.922
+      ],
+      "expanded": 17,
+      "frontier_peak": 1,
+      "memory_status": "solved",
+      "peak_python_kib": 8.0
+    },
+    {
+      "level": "pipes-5",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.586,
+      "runs_ms": [
+        1.748,
+        2.92,
+        1.586,
+        1.507,
+        1.492
+      ],
+      "expanded": 28,
+      "frontier_peak": 2,
+      "memory_status": "solved",
+      "peak_python_kib": 18.62
+    },
+    {
+      "level": "pipes-5",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.552,
+      "runs_ms": [
+        1.545,
+        2.661,
+        1.705,
+        1.552,
+        1.534
+      ],
+      "expanded": 28,
+      "frontier_peak": 2,
+      "memory_status": "solved",
+      "peak_python_kib": 12.97
+    },
+    {
+      "level": "pipes-6",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 5.527,
+      "runs_ms": [
+        5.527,
+        4.43,
+        4.018,
+        7.958,
+        8.653
+      ],
+      "expanded": 37,
+      "frontier_peak": 1,
+      "memory_status": "solved",
+      "peak_python_kib": 17.49
+    },
+    {
+      "level": "pipes-6",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 5.464,
+      "runs_ms": [
+        3.547,
+        3.142,
+        5.464,
+        6.925,
+        6.588
+      ],
+      "expanded": 37,
+      "frontier_peak": 1,
+      "memory_status": "solved",
+      "peak_python_kib": 12.23
+    },
+    {
+      "level": "lightup-3",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 0.106,
+      "runs_ms": [
+        0.106,
+        0.066,
+        0.067,
+        0.116,
+        0.174
+      ],
+      "expanded": 7,
+      "frontier_peak": 2,
+      "memory_status": "solved",
+      "peak_python_kib": 3.41
+    },
+    {
+      "level": "lightup-3",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 0.167,
+      "runs_ms": [
+        0.189,
+        0.187,
+        0.166,
+        0.167,
+        0.165
+      ],
+      "expanded": 9,
+      "frontier_peak": 2,
+      "memory_status": "solved",
+      "peak_python_kib": 3.48
+    },
+    {
+      "level": "lightup-5",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.209,
+      "runs_ms": [
+        1.209,
+        1.371,
+        1.301,
+        0.81,
+        1.128
+      ],
+      "expanded": 32,
+      "frontier_peak": 5,
+      "memory_status": "solved",
+      "peak_python_kib": 7.59
+    },
+    {
+      "level": "lightup-5",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 0.776,
+      "runs_ms": [
+        0.839,
+        1.112,
+        0.776,
+        0.74,
+        0.719
+      ],
+      "expanded": 35,
+      "frontier_peak": 5,
+      "memory_status": "solved",
+      "peak_python_kib": 10.12
+    },
+    {
+      "level": "lightup-6",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 0.99,
+      "runs_ms": [
+        0.549,
+        0.479,
+        1.34,
+        1.161,
+        0.99
+      ],
+      "expanded": 20,
+      "frontier_peak": 2,
+      "memory_status": "solved",
+      "peak_python_kib": 7.92
+    },
+    {
+      "level": "lightup-6",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.333,
+      "runs_ms": [
+        1.546,
+        1.333,
+        1.153,
+        1.21,
+        1.658
+      ],
+      "expanded": 26,
+      "frontier_peak": 2,
+      "memory_status": "solved",
+      "peak_python_kib": 9.06
+    },
+    {
+      "level": "lightup-7",
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 1.465,
+      "runs_ms": [
+        1.462,
+        2.409,
+        1.465,
+        1.453,
+        1.466
+      ],
+      "expanded": 51,
+      "frontier_peak": 9,
+      "memory_status": "solved",
+      "peak_python_kib": 27.27
+    },
+    {
+      "level": "lightup-7",
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "median_ms": 9.619,
+      "runs_ms": [
+        10.175,
+        9.619,
+        9.544,
+        7.21,
+        10.748
+      ],
+      "expanded": 142,
+      "frontier_peak": 7,
+      "memory_status": "solved",
+      "peak_python_kib": 45.49
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Only needed for production on Linux / Render. Local Python needs no packages.
+gunicorn>=25,<26; sys_platform != "win32"

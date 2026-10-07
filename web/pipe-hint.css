@@ -1,0 +1,15 @@
+.pipe-hint-preview{margin:18px 0 6px;padding:15px 12px 10px;background:#ffffff70;border:1px solid #d9e2ce;border-radius:12px}
+.pipe-preview-location{text-align:center;font-size:10px;font-weight:600;letter-spacing:.5px;color:#6b795c;margin-bottom:14px}
+.pipe-preview-comparison{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);gap:8px;align-items:center;max-width:240px;margin:auto}
+.pipe-preview-state{text-align:center;min-width:0}
+.pipe-preview-state>span{display:block;font-size:10px;color:#7a846c;margin-top:9px}
+.pipe-preview-tile{width:100%;max-width:82px;aspect-ratio:1;margin:auto;background:#f9fcf5;border:1px solid #dce5d2;border-radius:12px;overflow:hidden;box-shadow:0 3px 8px #29473108}
+.pipe-preview-tile svg{display:block;width:100%;height:100%;transform-origin:50% 50%;transform-box:view-box}
+.pipe-preview-target{background:#edf6df;border-color:#b5cca0;box-shadow:0 0 0 3px #c6dca425}
+.pipe-preview-target .pipe-path{stroke:#3c7353}
+.pipe-preview-arrow{color:#98aa7b;font-size:22px;text-align:center;padding-bottom:22px}
+.pipe-preview-replay{display:block;margin:14px auto 0;border:0;background:transparent;color:#6f8455;font-size:10px;padding:7px 10px;border-radius:6px}
+.pipe-preview-replay:hover{background:#dfe9d1}
+.coach-card.repair .pipe-hint-preview{border-color:#e8d6b8}
+.coach-card.repair .pipe-preview-location{color:#947044}
+#board .cell>svg{transform-origin:50% 50%;transform-box:view-box}
