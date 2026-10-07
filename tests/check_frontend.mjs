@@ -21,3 +21,36 @@ for (const [i, sample] of cases.entries()) {
   assert.equal(canonical(inspect(sample.level, sample.state)), canonical(sample.result), `Frontend rule mismatch in case ${i}`);
 }
 console.log(`JavaScript syntax OK; ${cases.length} rule comparisons passed.`);
+
+// Verify demo rotation keyframes for every pipe shape/orientation, without
+// requiring a browser. Actual visual rendering still needs manual review.
+let reduceMotion = false;
+const animationSource = fs.readFileSync(path.join(root, 'web/pipe-hint.js'), 'utf8');
+const animationEngine = vm.runInNewContext(
+  source.replace(/\bexport\s+/g, '') + '\n' +
+  animationSource.replace(/^import .*;\s*$/gm, '').replace(/\bexport\s+/g, '') +
+  '\n({animateDemoPipes, rotate})',
+  { window: { matchMedia: () => ({ matches: reduceMotion }) } },
+);
+let animations = [];
+const container = { querySelector: () => ({ animate: (frames, options) => animations.push({ frames, options }) }) };
+for (let from = 1; from < 16; from++) {
+  let to = from;
+  for (let step = 1; step <= 3; step++) {
+    to = animationEngine.rotate(to);
+    animations = [];
+    animationEngine.animateDemoPipes(container, [from], [to]);
+    if (from === to) { assert.equal(animations.length, 0); continue; }
+    assert.equal(animations.length, 1);
+    let turns = 0, rotated = from;
+    while (rotated !== to) { rotated = animationEngine.rotate(rotated); turns++; }
+    assert.equal(animations[0].frames[0].transform, `rotate(${-turns * 90}deg)`);
+    assert.equal(animations[0].frames[1].transform, 'rotate(0deg)');
+    assert.ok(animations[0].options.duration < 950);
+  }
+}
+reduceMotion = true;
+animations = [];
+animationEngine.animateDemoPipes(container, [1], [2]);
+assert.equal(animations.length, 0);
+console.log('Demo rotations and reduced-motion checks passed.');

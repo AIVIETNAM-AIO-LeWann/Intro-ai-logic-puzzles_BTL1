@@ -73,7 +73,6 @@ Benchmark đo thời gian và bộ nhớ trong hai lượt riêng. `peak_python_
 ## 📖 Tài liệu
 
 - [Thiết kế thuật toán và cơ chế gợi ý](docs/DESIGN.md)
-- [Phân công nhóm](docs/TEAM_PLAN.md)
 - [Checklist kiểm tra giao diện](docs/MANUAL_QA.md)
 - Luật tham khảo: [Pipes](https://www.puzzle-pipes.com/) · [Light Up](https://www.puzzle-light-up.com/)
 

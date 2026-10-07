@@ -12,4 +12,4 @@
 .pipe-preview-replay:hover{background:#dfe9d1}
 .coach-card.repair .pipe-hint-preview{border-color:#e8d6b8}
 .coach-card.repair .pipe-preview-location{color:#947044}
-#board .cell>svg{transform-origin:50% 50%;transform-box:view-box}
+#board .cell>svg,#demo-board .cell>svg{transform-origin:50% 50%;transform-box:view-box}

@@ -1,6 +1,6 @@
 import { request } from './api.js';
 import { drawBoard, inspect, rotate } from './board.js';
-import { clearPipePreview, showPipePreview, animateAppliedPipe } from './pipe-hint.js';
+import { clearPipePreview, showPipePreview, animateAppliedPipe, animateDemoPipes } from './pipe-hint.js';
 
 const $ = id => document.getElementById(id);
 const clone = value => JSON.parse(JSON.stringify(value));
@@ -9,6 +9,7 @@ let levels = [], level, state, history = [], future = [], moveCount = 0, elapsed
 let currentHint = null, revision = 0, busy = false, tool = 'bulb', completed = new Set(), saved = {};
 let demoResult = null, demoIndex = 0, demoTimer = null, toastTimer = null, solved = false;
 let announcedWin = null, pendingWin = null;
+let demoVisibleTiles = null;
 
 function winningBoardKey() { return JSON.stringify([level.id, state]); }
 
@@ -238,7 +239,13 @@ function renderDemo(solution = false) {
   if (!demoResult) return;
   const trace = demoResult.trace || [], entry = trace[demoIndex];
   const shown = solution ? demoResult.solution : entry?.state;
-  if (shown) drawBoard($('demo-board'), level, shown, { demo: true, fallback: state });
+  if (shown) {
+    const visibleTiles = level.game === 'pipes'
+      ? shown.tiles.map((mask, i) => mask || state.tiles[i] || level.tiles[i]) : null;
+    drawBoard($('demo-board'), level, shown, { demo: true, fallback: state });
+    if (visibleTiles) animateDemoPipes($('demo-board'), demoVisibleTiles || state.tiles, visibleTiles);
+    demoVisibleTiles = visibleTiles;
+  }
   const metrics = demoResult.metrics;
   const stats = [[metrics.expanded, 'TRẠNG THÁI ĐÃ XÉT'], [metrics.frontier_peak, 'FRONTIER LỚN NHẤT'], [metrics.elapsed_ms + ' ms', 'THỜI GIAN TÌM'], [solution ? '0' : entry?.h ?? '—', 'HEURISTIC h']];
   $('demo-stats').innerHTML = stats.map(([v, label]) => `<div class="demo-stat"><small>${label}</small><strong>${v}</strong></div>`).join('');
@@ -251,7 +258,7 @@ function renderDemo(solution = false) {
 }
 async function openDemo() {
   if (busy) return;
-  setBusy(true); stopDemo(); demoResult = null;
+  setBusy(true); stopDemo(); demoResult = null; demoVisibleTiles = null;
   $('demo-title').textContent = $('algorithm').value === 'dfs' ? 'Theo dấu DFS' : 'Theo dấu Greedy';
   $('demo-message').textContent = 'Đang tìm kiếm từ các lựa chọn hiện tại. Các ô ống mờ là những ô máy chưa gán hướng.';
   $('demo-board').replaceChildren(); $('demo-stats').replaceChildren(); $('demo-step-label').textContent = '';
@@ -291,7 +298,7 @@ function events() {
     if (demoTimer) { stopDemo(); return; }
     if (demoIndex >= demoResult.trace.length - 1) demoIndex = 0;
     $('demo-play').textContent = 'Tạm dừng'; renderDemo();
-    demoTimer = setInterval(() => { if (demoIndex >= demoResult.trace.length - 1) { stopDemo(); return; } demoIndex++; renderDemo(); }, 650);
+    demoTimer = setInterval(() => { if (demoIndex >= demoResult.trace.length - 1) { stopDemo(); return; } demoIndex++; renderDemo(); }, level.game === 'pipes' ? 950 : 650);
   });
   $('demo-solution').addEventListener('click', () => { stopDemo(); renderDemo(true); });
   document.addEventListener('keydown', event => {

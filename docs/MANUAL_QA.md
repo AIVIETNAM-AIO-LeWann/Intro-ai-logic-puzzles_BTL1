@@ -29,6 +29,7 @@
 - Reload một bảng đã giải vẫn xác nhận lại với Python và cho xem kết quả; kết quả xác nhận chậm của bảng cũ không mở hộp thoại trên bảng mới.
 
 1. Chọn DFS rồi Greedy; mở demo, chạy từng bước, tự chạy, kéo thanh, xem lời giải.
+   Với Pipes, các ô đổi hướng phải xoay từ hình trước sang hình sau. Thử cả bước lùi, kéo thanh nhanh và nút xem bảng lời giải; đóng/mở demo không dùng lại hướng của màn trước. Ô chưa gán vẫn mờ. Bật giảm chuyển động của hệ điều hành thì bảng đổi hướng ngay, không xoay.
 2. Đóng demo rồi kiểm tra bảng người chơi không bị thay đổi.
 3. Đổi màn trong lúc chờ gợi ý: kết quả cũ không áp dụng lên màn mới.
 4. Reload trang: khôi phục màn và bảng đang chơi. Hoàn tác cũ không được lưu qua reload.

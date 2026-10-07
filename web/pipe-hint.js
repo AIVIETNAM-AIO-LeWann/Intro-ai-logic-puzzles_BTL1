@@ -1,4 +1,4 @@
-import { pipeSvg } from './board.js';
+import { pipeSvg, rotate } from './board.js';
 
 let previewAnimation = null;
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -57,4 +57,23 @@ export function animateAppliedPipe(cell, turns) {
   if (!svg?.animate || reducedMotion()) return;
   svg.animate([{ transform: `rotate(${-turns * 90}deg)` }, { transform: 'rotate(0deg)' }],
     { duration: 420 + turns * 150, easing: 'cubic-bezier(.22,.7,.25,1)' });
+}
+
+// The freshly rendered SVG has the destination orientation. Rotate it back
+// to its previously displayed orientation, then animate to the destination.
+// This only affects the demo DOM, never the player state or search trace.
+export function animateDemoPipes(container, previous, next) {
+  if (!previous || reducedMotion()) return;
+  next.forEach((mask, cell) => {
+    if (!previous[cell] || previous[cell] === mask) return;
+    let rotated = previous[cell], turns = 0;
+    while (rotated !== mask && turns < 4) { rotated = rotate(rotated); turns++; }
+    if (turns === 4) return;
+    const svg = container.querySelector(`[data-cell="${cell}"] svg`);
+    if (!svg?.animate) return;
+    svg.animate([
+      { transform: `rotate(${-turns * 90}deg)` },
+      { transform: 'rotate(0deg)' },
+    ], { duration: 380 + turns * 100, easing: 'cubic-bezier(.22,.7,.25,1)' });
+  });
 }
