@@ -63,6 +63,7 @@ Khi đổi cổng, mở **http://127.0.0.1:8766**. Không mở trực tiếp `we
 
 - Hai khu vực game riêng, mỗi game 4 màn. Pipes: 3×3, 4×4, 5×5, 6×6. Light Up: 3×3, 5×5, 6×6, 7×7.
 - Chơi trực tiếp, hoàn tác/làm lại, đặt lại bảng, đếm nước đi và thời gian.
+- Khi Python xác nhận giải đúng, hiện hộp thoại **Hoàn thành!** kèm số nước đi, thời gian và nút sang màn tiếp theo. Có thể đóng để xem lại bảng. Chơi lại màn đã vượt vẫn có thông báo chiến thắng.
 - Light Up phản hồi vùng sáng, đèn xung đột và số đèn quanh ô đen ngay khi chơi.
 - Xin một gợi ý, xem giải thích rồi tự chọn áp dụng. Không tự sửa nước đi của người chơi.
 - Khi lựa chọn hiện tại vô nghiệm, đề xuất một bước sửa. Hết ngân sách tìm kiếm được báo riêng.
@@ -131,41 +132,6 @@ Benchmark đo thời gian và bộ nhớ trong hai lượt riêng để `tracema
 Checklist giao diện: [docs/MANUAL_QA.md](docs/MANUAL_QA.md).
 
 Nếu máy có Node.js, chạy thêm `node tests/check_frontend.mjs` để kiểm tra cú pháp JS và đối chiếu 800 trạng thái giữa logic phản hồi giao diện với Python. CI chạy bước này tự động. Đây không phải kiểm thử bố cục hoặc thao tác trên trình duyệt thật.
-
-## Làm việc nhóm trên GitHub
-
-Mỗi nhiệm vụ làm trên nhánh riêng và mở Pull Request về `main`. Ví dụ bắt đầu review Pipes khi working tree đang sạch:
-
-```powershell
-git switch main
-git pull --ff-only origin main
-git switch -c feat/pipes-review
-```
-
-Sau khi sửa, chạy test rồi kiểm tra các file trước khi commit:
-
-```powershell
-python -m unittest discover -s tests -v
-git status
-git diff
-git add logic_lab/games/pipes.py
-git commit -m "Improve Pipes validation"
-git push -u origin feat/pipes-review
-```
-
-Lệnh `git add` minh họa một file; thêm các file test và tài liệu đã sửa bằng đường dẫn tương ứng. Sau đó mở Pull Request trên GitHub, ghi rõ thay đổi và cách kiểm tra. Trưởng nhóm thêm các thành viên làm collaborator để push nhánh; người chưa có quyền có thể fork và gửi PR. Khi Git yêu cầu tác giả, mỗi người đặt tên/email riêng bằng `git config user.name` và `git config user.email` trong repo.
-
-| Phụ trách | Phần việc chính | Nhánh gợi ý |
-|---|---|---|
-| Người làm baseline | UI, gợi ý, tích hợp và demo | `feat/ui-hints` |
-| TV2 | Pipes, test và nội dung báo cáo Pipes | `feat/pipes-review` |
-| TV3 | Light Up, test và nội dung báo cáo Light Up | `feat/lightup-review` |
-| TV4 | Input, benchmark, phân tích số liệu | `feat/benchmark` |
-| TV5 | QA độc lập, tổng hợp báo cáo và slide | `docs/report-qa` |
-
-Tiêu chí hoàn thành và mốc công việc: [TEAM_PLAN.md](docs/TEAM_PLAN.md). `search.py` là lõi dùng chung, cần thống nhất với cả hai người phụ trách game trước khi sửa.
-
-Không đưa `.venv`, cache hoặc secret vào repo. Dự án đã có `.gitignore`. Chưa chọn giấy phép phân phối; nhóm cần tự quyết định trước khi cấp phép nguồn mở.
 
 ## Triển khai Render
 

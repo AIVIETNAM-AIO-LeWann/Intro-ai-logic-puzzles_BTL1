@@ -8,6 +8,43 @@ const STORE = 'mach.logic-lab.v1';
 let levels = [], level, state, history = [], future = [], moveCount = 0, elapsed = 0, started = false;
 let currentHint = null, revision = 0, busy = false, tool = 'bulb', completed = new Set(), saved = {};
 let demoResult = null, demoIndex = 0, demoTimer = null, toastTimer = null, solved = false;
+let announcedWin = null, pendingWin = null;
+
+function winningBoardKey() { return JSON.stringify([level.id, state]); }
+
+function showVictory() {
+  let dialog = $('victory-dialog');
+  if (!dialog) {
+    dialog = document.createElement('dialog');
+    dialog.id = 'victory-dialog';
+    dialog.className = 'victory-dialog';
+    dialog.setAttribute('aria-labelledby', 'victory-title');
+    dialog.setAttribute('aria-describedby', 'victory-message');
+    dialog.innerHTML = `<div class="victory-emblem" aria-hidden="true">✓</div>
+      <div class="eyebrow">GIẢI ĐÚNG RỒI</div><h2 id="victory-title">Hoàn thành!</h2>
+      <p id="victory-message"></p>
+      <div class="victory-stats"><div><strong id="victory-moves"></strong><span>NƯỚC ĐI</span></div><div><strong id="victory-time"></strong><span>THỜI GIAN CHƠI</span></div></div>
+      <button id="victory-next" class="primary-button" autofocus></button>
+      <button id="victory-stay" class="text-button">Ở lại xem bảng đã giải</button>`;
+    document.body.append(dialog);
+    $('victory-stay').addEventListener('click', () => dialog.close());
+  }
+  $('victory-message').textContent = `Bạn đã giải đúng “${level.title}”. ${level.game === 'pipes' ? 'Tất cả ống đã nối thành một mạng, không có đầu hở hay vòng kín.' : 'Mọi ô trắng đã sáng, các ô số đều đúng và không có đèn chiếu vào nhau.'}`;
+  $('victory-moves').textContent = moveCount;
+  $('victory-time').textContent = $('timer').textContent;
+  const sameGame = levels.filter(item => item.game === level.game);
+  const index = sameGame.findIndex(item => item.id === level.id);
+  const next = sameGame[index + 1] || sameGame.find(item => !completed.has(item.id))
+    || levels.find(item => item.game !== level.game && !completed.has(item.id));
+  $('victory-next').hidden = !next;
+  if (next) {
+    $('victory-next').textContent = next.game === level.game ? 'Chơi màn tiếp theo →' : `Khám phá ${next.game === 'pipes' ? 'Pipes' : 'Light Up'} →`;
+    $('victory-next').onclick = () => { dialog.close(); selectLevel(next.id); };
+  } else {
+    $('victory-message').textContent += ' Bạn đã hoàn thành tất cả các màn hiện có!';
+  }
+  if (!dialog.open) dialog.showModal();
+}
 
 function notify(message) {
   $('toast').textContent = message; $('toast').classList.add('show');
@@ -43,6 +80,8 @@ function commit(change) {
   change(); moveCount++; started = true; revision++; clearHint(); render(); save();
 }
 function selectLevel(id) {
+  $('victory-dialog')?.close();
+  announcedWin = null;
   if (level) save();
   level = levels.find(item => item.id === id) || levels[0];
   const previous = saved[level.id];
@@ -82,6 +121,7 @@ function render() {
   const status = drawBoard($('board'), level, state, { hintCell: currentHint?.action?.cell });
   if (focusCell !== undefined) $('board').querySelector(`[data-cell="${focusCell}"]`)?.focus({ preventScroll: true });
   solved = status.solved;
+  if (!solved) announcedWin = null;
   const pipes = level.game === 'pipes';
   const percent = pipes ? Math.round(status.connected_edges / status.total_edges * 100) : Math.round(status.lit_count / status.white_count * 100);
   $('progress-number').textContent = pipes ? `${status.connected_edges} / ${status.total_edges}` : `${Math.min(percent, 100)}%`;
@@ -92,7 +132,7 @@ function render() {
   if (solved) {
     $('status-message').textContent = 'Hoàn thành! Bảng của bạn thỏa tất cả quy tắc.';
     $('status-message').classList.add('success'); $('progress-label').textContent = '✓ Đã giải đúng';
-    if (!completed.has(level.id)) validateWin();
+    if (announcedWin !== winningBoardKey() && pendingWin !== winningBoardKey()) validateWin();
   } else if (!pipes && status.errors.length) {
     $('status-message').textContent = 'Có đèn chiếu vào nhau hoặc vượt số đèn cạnh ô đen. Các ô liên quan được tô đỏ.';
     $('status-message').classList.add('warning'); $('progress-label').textContent = 'Cần xem lại';
@@ -107,12 +147,16 @@ function render() {
   $('hint-button').disabled = busy || solved; $('demo-open').disabled = busy;
 }
 async function validateWin() {
-  const rev = revision, id = level.id;
+  const key = winningBoardKey(), id = level.id;
+  pendingWin = key;
   try {
     const result = await request('/api/check', payload());
-    if (rev !== revision || id !== level.id || !result.solved) return;
-    if (!completed.has(id)) { completed.add(id); renderLevels(); save(); notify('Giải đúng rồi! Bạn có thể chọn màn tiếp theo ở bên trái.'); }
+    if (key !== winningBoardKey() || !result.solved || announcedWin === key) return;
+    completed.add(id); renderLevels(); save();
+    announcedWin = key;
+    showVictory();
   } catch (error) { notify(error.message); }
+  finally { if (pendingWin === key) pendingWin = null; }
 }
 function renderTimer() { $('timer').textContent = `${String(Math.floor(elapsed / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`; }
 function payload() { return { level: level.id, state: clone(state), algorithm: $('algorithm').value }; }

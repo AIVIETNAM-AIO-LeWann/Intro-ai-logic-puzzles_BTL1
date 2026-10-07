@@ -23,6 +23,11 @@
 
 ## Demo và lưu tiến độ
 
+- Giải xong cả Pipes và Light Up: hộp thoại Hoàn thành hiện sau khi API xác nhận, đúng nước đi/thời gian; dấu tick trên danh sách màn được lưu.
+- Đóng hộp thoại hoặc nhấn Escape, đổi thuật toán: không bật lại thông báo cho cùng bảng. Hoàn tác về bảng chưa xong rồi giải lại: thông báo xuất hiện lại.
+- Nút màn tiếp theo chuyển đúng màn. Ở màn cuối, ưu tiên màn cùng game còn thiếu rồi chuyển game còn chưa xong; khi vượt hết, ẩn nút tiếp và báo đã hoàn thành toàn bộ.
+- Reload một bảng đã giải vẫn xác nhận lại với Python và cho xem kết quả; kết quả xác nhận chậm của bảng cũ không mở hộp thoại trên bảng mới.
+
 1. Chọn DFS rồi Greedy; mở demo, chạy từng bước, tự chạy, kéo thanh, xem lời giải.
 2. Đóng demo rồi kiểm tra bảng người chơi không bị thay đổi.
 3. Đổi màn trong lúc chờ gợi ý: kết quả cũ không áp dụng lên màn mới.
