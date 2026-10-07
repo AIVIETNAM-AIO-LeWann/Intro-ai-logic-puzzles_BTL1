@@ -75,7 +75,7 @@ function clearHint() {
   $('coach-title').textContent = 'Một chút gợi mở?';
   $('coach-message').textContent = 'Cứ thử ý tưởng của bạn. Khi cần, mình sẽ tìm một nước đi tiếp từ chính bảng bạn đang chơi.';
 }
-function snapshot() { return { state: clone(state), moves: moveCount, elapsed, started }; }
+function snapshot() { return { state: clone(state), moves: moveCount, elapsed, started, completed: completed.has(level.id) }; }
 function commit(change) {
   history.push(snapshot()); if (history.length > 500) history.shift(); future = [];
   change(); moveCount++; started = true; revision++; clearHint(); render(); save();
@@ -225,7 +225,18 @@ function travel(back) {
   if (!source.length) return;
   destination.push(snapshot()); const entry = source.pop(); state = entry.state; moveCount = entry.moves;
   elapsed = entry.elapsed; started = entry.started;
-  revision++; clearHint(); render(); save();
+  if (entry.completed) completed.add(level.id); else completed.delete(level.id);
+  revision++; clearHint(); renderLevels(); render(); save();
+}
+function resetPuzzle() {
+  commit(() => {
+    state = fresh(level); moveCount = -1; elapsed = 0;
+    completed.delete(level.id);
+    announcedWin = null;
+  });
+  renderLevels();
+  $('reset-dialog').close();
+  notify('Bảng và dấu hoàn thành đã được đặt lại. Bạn vẫn có thể hoàn tác.');
 }
 function showRules() {
   const pipes = level.game === 'pipes'; $('rules-title').textContent = pipes ? 'Cách chơi Pipes' : 'Cách chơi Light Up';
@@ -284,7 +295,7 @@ function events() {
   $('board').addEventListener('contextmenu', event => { const cell = event.target.closest('[data-cell]'); if (cell) { event.preventDefault(); playCell(Number(cell.dataset.cell), true); } });
   $('undo').addEventListener('click', () => travel(true)); $('redo').addEventListener('click', () => travel(false));
   $('reset').addEventListener('click', () => $('reset-dialog').showModal());
-  $('confirm-reset').addEventListener('click', () => { commit(() => { state = fresh(level); moveCount = -1; elapsed = 0; }); $('reset-dialog').close(); notify('Bảng đã được đặt lại. Bạn vẫn có thể hoàn tác.'); });
+  $('confirm-reset').addEventListener('click', resetPuzzle);
   $('hint-button').addEventListener('click', getHint); $('apply-hint').addEventListener('click', applyHint);
   $('rules-open').addEventListener('click', showRules); $('demo-open').addEventListener('click', openDemo);
   document.querySelectorAll('.dialog-close').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));

@@ -54,3 +54,26 @@ animations = [];
 animationEngine.animateDemoPipes(container, [1], [2]);
 assert.equal(animations.length, 0);
 console.log('Demo rotations and reduced-motion checks passed.');
+
+// Exercise the actual reset/history functions with UI side effects stubbed.
+const appSource = fs.readFileSync(path.join(root, 'web/app.js'), 'utf8')
+  .replace(/^import .*;\s*$/gm, '').replace(/^init\(\);\s*$/m, '');
+const historyContext = vm.createContext({
+  document: { getElementById: () => ({ close() {} }) },
+});
+vm.runInContext(appSource + `
+  render = () => {}; renderLevels = () => {}; clearHint = () => {};
+  notify = () => {}; save = () => {};
+  level = { id: 'lightup-3', game: 'lightup' };
+  state = { bulbs: [0, 8], crosses: [] }; moveCount = 2; elapsed = 12;
+  completed = new Set(['lightup-3', 'pipes-3']);
+`, historyContext);
+const historyState = () => JSON.parse(vm.runInContext(
+  "JSON.stringify({state, moveCount, elapsed, done: [...completed]})", historyContext));
+vm.runInContext('resetPuzzle()', historyContext);
+assert.deepEqual(historyState(), { state: { bulbs: [], crosses: [] }, moveCount: 0, elapsed: 0, done: ['pipes-3'] });
+vm.runInContext('travel(true)', historyContext);
+assert.deepEqual(historyState(), { state: { bulbs: [0, 8], crosses: [] }, moveCount: 2, elapsed: 12, done: ['pipes-3', 'lightup-3'] });
+vm.runInContext('travel(false)', historyContext);
+assert.deepEqual(historyState(), { state: { bulbs: [], crosses: [] }, moveCount: 0, elapsed: 0, done: ['pipes-3'] });
+console.log('Reset, undo and redo completion-state checks passed.');
