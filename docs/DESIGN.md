@@ -83,6 +83,8 @@ Demo lưu tối đa 350 trạng thái được lấy ra khỏi frontier, trướ
 - `POST /api/hint`: một gợi ý hoặc phương án sửa.
 - `POST /api/solve`: lời giải và trace cho demo.
 
+Demo nhận thêm `scope`: `current` (mặc định, giữ các lựa chọn của người chơi) hoặc `original` (giải lại màn gốc, bỏ ràng buộc từ những nước đã chơi). Chế độ thứ hai chỉ dùng để xem, không cập nhật bảng người chơi. Nhánh hiện tại vô nghiệm hoặc hết ngân sách không tự chuyển sang chế độ khác; người chơi chọn bằng nút trong demo.
+
 Ví dụ:
 
 ```json

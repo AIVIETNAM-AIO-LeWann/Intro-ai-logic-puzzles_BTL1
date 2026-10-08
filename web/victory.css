@@ -1,4 +1,8 @@
 .victory-dialog{text-align:center;max-width:440px;padding:35px 30px 27px;overflow:hidden}
+#victory-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border:1px solid #d5dfc9;background:#f0f5e9;color:#365944;border-radius:50%;font-size:25px;z-index:1}
+#demo-scope-controls{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}
+#demo-scope-controls button{flex:1;justify-content:center;min-height:40px;font-size:11px}
+#demo-scope-controls [aria-pressed="true"]{background:#e3efd5;border-color:#8ca975;color:#294e37}
 .victory-emblem{display:grid;place-items:center;width:76px;height:76px;margin:0 auto 24px;background:#d7f3a3;color:#315d3b;border-radius:50%;font-size:36px;box-shadow:0 0 0 10px #edf5e2,0 0 0 20px #f5f9ee}
 .victory-dialog[open] .victory-emblem{animation:victory-arrive .55s cubic-bezier(.2,.8,.3,1.2)}
 .victory-dialog h2{font-size:36px;margin:12px 0;letter-spacing:-1px}

@@ -37,9 +37,15 @@ def check(data):
 
 
 def solve(data, trace=False):
-    _, _, puzzle = context(data)
-    return search(puzzle, algorithm=data.get("algorithm", "greedy"),
-                  timeout=5.0, max_nodes=100000, trace_limit=350 if trace else 0)
+    level, _, puzzle = context(data)
+    scope = data.get("scope", "current")
+    if scope not in ("current", "original"):
+        raise ValueError("Phạm vi giải không hợp lệ.")
+    if scope == "original":
+        puzzle = Pipes(level) if level["game"] == "pipes" else LightUp(level)
+    result = search(puzzle, algorithm=data.get("algorithm", "greedy"),
+                    timeout=5.0, max_nodes=100000, trace_limit=350 if trace else 0)
+    return {**result, "scope": scope}
 
 
 def hint(data):

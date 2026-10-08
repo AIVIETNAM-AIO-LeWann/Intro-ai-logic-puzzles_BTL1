@@ -21,7 +21,7 @@ function showVictory() {
     dialog.className = 'victory-dialog';
     dialog.setAttribute('aria-labelledby', 'victory-title');
     dialog.setAttribute('aria-describedby', 'victory-message');
-    dialog.innerHTML = `<div class="victory-emblem" aria-hidden="true">✓</div>
+    dialog.innerHTML = `<button type="button" id="victory-close" class="icon-button" aria-label="Đóng thông báo hoàn thành" title="Đóng (Esc)">×</button><div class="victory-emblem" aria-hidden="true">✓</div>
       <div class="eyebrow">GIẢI ĐÚNG RỒI</div><h2 id="victory-title">Hoàn thành!</h2>
       <p id="victory-message"></p>
       <div class="victory-stats"><div><strong id="victory-moves"></strong><span>NƯỚC ĐI</span></div><div><strong id="victory-time"></strong><span>THỜI GIAN CHƠI</span></div></div>
@@ -29,6 +29,7 @@ function showVictory() {
       <button id="victory-stay" class="text-button">Ở lại xem bảng đã giải</button>`;
     document.body.append(dialog);
     $('victory-stay').addEventListener('click', () => dialog.close());
+    $('victory-close').addEventListener('click', () => dialog.close());
   }
   $('victory-message').textContent = `Bạn đã giải đúng “${level.title}”. ${level.game === 'pipes' ? 'Tất cả ống đã nối thành một mạng, không có đầu hở hay vòng kín.' : 'Mọi ô trắng đã sáng, các ô số đều đúng và không có đèn chiếu vào nhau.'}`;
   $('victory-moves').textContent = moveCount;
@@ -267,26 +268,50 @@ function renderDemo(solution = false) {
   $('demo-play').disabled = trace.length < 2; $('demo-slider').disabled = !trace.length;
   $('demo-solution').hidden = !demoResult.solution;
 }
-async function openDemo() {
+async function openDemo(scope = 'current') {
+  if (scope !== 'original') scope = 'current';
   if (busy) return;
+  let scopeControls = $('demo-scope-controls');
+  if (!scopeControls) {
+    scopeControls = document.createElement('div');
+    scopeControls.id = 'demo-scope-controls';
+    scopeControls.innerHTML = '<button type="button" class="secondary-button" id="demo-current">Giữ nước đi hiện tại</button><button type="button" class="secondary-button" id="demo-original">Cho máy giải lại màn gốc</button>';
+    $('demo-message').after(scopeControls);
+    $('demo-current').addEventListener('click', () => openDemo('current'));
+    $('demo-original').addEventListener('click', () => openDemo('original'));
+  }
+  for (const name of ['current', 'original']) {
+    $(`demo-${name}`).disabled = true;
+    $(`demo-${name}`).setAttribute('aria-pressed', String(scope === name));
+  }
   setBusy(true); stopDemo(); demoResult = null; demoVisibleTiles = null;
   $('demo-title').textContent = $('algorithm').value === 'dfs' ? 'Theo dấu DFS' : 'Theo dấu Greedy';
-  $('demo-message').textContent = 'Đang tìm kiếm từ các lựa chọn hiện tại. Các ô ống mờ là những ô máy chưa gán hướng.';
+  $('demo-message').textContent = scope === 'original' ? 'Máy đang giải màn gốc, được phép thay đổi các lựa chọn đã chơi. Bảng của bạn không bị thay đổi.' : 'Đang tìm lời giải giữ nguyên các lựa chọn hiện tại. Các ô ống mờ là những ô máy chưa gán hướng.';
   $('demo-board').replaceChildren(); $('demo-stats').replaceChildren(); $('demo-step-label').textContent = '';
   for (const id of ['demo-prev', 'demo-next', 'demo-play', 'demo-slider']) $(id).disabled = true;
-  $('demo-solution').hidden = true; $('demo-dialog').showModal(); const rev = revision;
+  $('demo-solution').hidden = true;
+  if (!$('demo-dialog').open) $('demo-dialog').showModal();
+  const rev = revision;
   try {
-    const result = await request('/api/solve', payload());
-    if (rev !== revision) return;
+    const result = await request('/api/solve', { ...payload(), scope });
+    if (rev !== revision || !$('demo-dialog').open) return;
     demoResult = result; demoIndex = 0;
     $('demo-message').textContent = result.status === 'solved'
-      ? 'Đã tìm được lời giải. Xem từng trạng thái được xét; việc xem demo không thay đổi bảng bạn đang chơi.'
-      : result.status === 'unsat' ? 'Không có lời giải giữ nguyên các lựa chọn hiện tại. Đóng demo và bấm Gợi ý để xem một phương án sửa.'
+      ? (scope === 'original' ? 'Đây là lời giải của màn gốc, có thể khác các nước bạn đã chơi. Demo không thay đổi bảng của bạn.' : 'Đã tìm được lời giải giữ nguyên các lựa chọn hiện tại. Demo không thay đổi bảng bạn đang chơi.')
+      : result.status === 'unsat' ? (scope === 'current' ? 'Không thể giải nếu giữ nguyên các lựa chọn hiện tại. Chọn “Cho máy giải lại màn gốc” để xem máy tìm lời giải khác, hoặc đóng và dùng Gợi ý để sửa từng bước.' : 'Máy đã xét hết các nhánh nhưng không tìm thấy lời giải cho màn gốc.')
       : 'Đã chạm giới hạn tìm kiếm. Các trạng thái dưới đây là phần máy đã xét; chưa thể kết luận vô nghiệm.';
     if (result.trace_truncated) $('demo-message').textContent += ' Bản xem chỉ lưu 350 trạng thái đầu.';
-    renderDemo(); $('last-metrics').textContent = metricsText(result.metrics);
+    renderDemo();
+    if (!result.trace?.length) {
+      drawBoard($('demo-board'), level, state, { demo: true });
+      $('demo-step-label').textContent = 'Bảng hiện tại · chưa có trạng thái tìm kiếm để phát';
+    }
+    $('last-metrics').textContent = metricsText(result.metrics);
   } catch (error) { $('demo-message').textContent = error.message; }
-  finally { setBusy(false); }
+  finally {
+    setBusy(false);
+    $('demo-current').disabled = false; $('demo-original').disabled = false;
+  }
 }
 
 function events() {

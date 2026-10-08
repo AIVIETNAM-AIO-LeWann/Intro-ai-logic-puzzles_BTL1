@@ -23,6 +23,10 @@
 
 ## Demo và lưu tiến độ
 
+- Đóng thông báo chiến thắng bằng nút × góc trên phải: bảng và dấu hoàn thành được giữ, hộp thoại không tự bật lại khi chỉ đổi thuật toán.
+- Xoay Pipes ra ngoài biên hoặc đặt đèn cạnh ô số 0 rồi mở demo: chế độ giữ nước hiện tại báo mâu thuẫn và vẫn hiển thị bảng. Chọn “Cho máy giải lại màn gốc”: có trace/lời giải và các nút phát hoạt động; đóng demo không làm mất nước đi người chơi.
+- Chuyển qua lại hai chế độ demo với DFS và Greedy. Mỗi lần đổi dừng phát cũ, đặt lại thanh trượt và hiển thị đúng phạm vi đang giải.
+
 - Giải xong cả Pipes và Light Up: hộp thoại Hoàn thành hiện sau khi API xác nhận, đúng nước đi/thời gian; dấu tick trên danh sách màn được lưu.
 - Đóng hộp thoại hoặc nhấn Escape, đổi thuật toán: không bật lại thông báo cho cùng bảng. Hoàn tác về bảng chưa xong rồi giải lại: thông báo xuất hiện lại.
 - Nút màn tiếp theo chuyển đúng màn. Ở màn cuối, ưu tiên màn cùng game còn thiếu rồi chuyển game còn chưa xong; khi vượt hết, ẩn nút tiếp và báo đã hoàn thành toàn bộ.
