@@ -297,7 +297,7 @@ async function openDemo(scope = 'flexible') {
     if (rev !== revision || !$('demo-dialog').open) return;
     demoResult = result; demoIndex = 0;
     $('demo-message').textContent = result.status === 'solved'
-      ? (scope === 'flexible' ? 'Đã tìm được lời giải. Máy có thể sửa các nước đã đi; các bước dưới đây là trạng thái tìm kiếm, không bảo đảm ít thao tác sửa nhất. Bảng của bạn được giữ nguyên.' : 'Có lời giải giữ nguyên các lựa chọn đã đánh dấu. Demo không thay đổi bảng bạn đang chơi.')
+      ? (scope === 'flexible' ? 'Máy đã tìm ra cách giải và có thể đổi lại vài nước bạn đã đi. Bạn đang xem thử, bảng đang chơi chưa thay đổi.' : 'Máy đã tìm ra cách giải tiếp mà không đổi các nước bạn đã đi. Bạn đang xem thử, bảng đang chơi chưa thay đổi.')
       : result.status === 'unsat' ? (scope === 'current' ? 'Một số lựa chọn đang mâu thuẫn khi bị giữ cố định. Điều này không có nghĩa màn chơi vô nghiệm. Chọn “Cho phép sửa nước đã đi” để máy tìm cách giải có điều chỉnh.' : 'Máy đã xét hết các nhánh nhưng không tìm thấy lời giải cho màn này.')
       : 'Đã chạm giới hạn tìm kiếm. Các trạng thái dưới đây là phần máy đã xét; chưa thể kết luận vô nghiệm.';
     if (result.trace_truncated) $('demo-message').textContent += ' Bản xem chỉ lưu 350 trạng thái đầu.';
