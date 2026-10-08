@@ -37,12 +37,16 @@ def check(data):
 
 
 def solve(data, trace=False):
-    level, _, puzzle = context(data)
+    level, state, puzzle = context(data)
     scope = data.get("scope", "current")
-    if scope not in ("current", "original"):
+    if scope not in ("current", "original", "flexible"):
         raise ValueError("Phạm vi giải không hợp lệ.")
     if scope == "original":
         puzzle = Pipes(level) if level["game"] == "pipes" else LightUp(level)
+    elif scope == "flexible":
+        # Same puzzle shapes, but rotations/bulbs/marks are reversible choices.
+        # Pipes tries orientations starting from the player's current masks.
+        puzzle = Pipes({**level, "tiles": state["tiles"]}) if level["game"] == "pipes" else LightUp(level)
     result = search(puzzle, algorithm=data.get("algorithm", "greedy"),
                     timeout=5.0, max_nodes=100000, trace_limit=350 if trace else 0)
     return {**result, "scope": scope}

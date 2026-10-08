@@ -83,7 +83,7 @@ Demo lưu tối đa 350 trạng thái được lấy ra khỏi frontier, trướ
 - `POST /api/hint`: một gợi ý hoặc phương án sửa.
 - `POST /api/solve`: lời giải và trace cho demo.
 
-Demo nhận thêm `scope`: `current` (mặc định, giữ các lựa chọn của người chơi) hoặc `original` (giải lại màn gốc, bỏ ràng buộc từ những nước đã chơi). Chế độ thứ hai chỉ dùng để xem, không cập nhật bảng người chơi. Nhánh hiện tại vô nghiệm hoặc hết ngân sách không tự chuyển sang chế độ khác; người chơi chọn bằng nút trong demo.
+Demo nhận thêm `scope`: `flexible` (mặc định trên giao diện, cho phép sửa nước đã đi), `current` (giữ các lựa chọn của người chơi) hoặc `original` (giải màn gốc, giữ tương thích API cũ). API không truyền scope vẫn dùng `current`. Với `flexible`, Pipes thử hướng từ mask hiện tại nhưng không khóa ô đã chỉnh; Light Up bỏ ràng buộc đèn/dấu × để tìm một nghiệm hợp lệ. Đây là tìm lại phép gán, không phải tối ưu số nước sửa. Demo không cập nhật bảng người chơi. Nhánh bị khóa vô nghiệm chỉ có nghĩa không thể giữ toàn bộ lựa chọn đó, không chứng minh màn gốc vô nghiệm. Hết ngân sách luôn là chưa biết.
 
 Ví dụ:
 

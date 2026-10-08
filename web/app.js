@@ -268,25 +268,25 @@ function renderDemo(solution = false) {
   $('demo-play').disabled = trace.length < 2; $('demo-slider').disabled = !trace.length;
   $('demo-solution').hidden = !demoResult.solution;
 }
-async function openDemo(scope = 'current') {
-  if (scope !== 'original') scope = 'current';
+async function openDemo(scope = 'flexible') {
+  if (scope !== 'current') scope = 'flexible';
   if (busy) return;
   let scopeControls = $('demo-scope-controls');
   if (!scopeControls) {
     scopeControls = document.createElement('div');
     scopeControls.id = 'demo-scope-controls';
-    scopeControls.innerHTML = '<button type="button" class="secondary-button" id="demo-current">Giữ nước đi hiện tại</button><button type="button" class="secondary-button" id="demo-original">Cho máy giải lại màn gốc</button>';
+    scopeControls.innerHTML = '<button type="button" class="secondary-button" id="demo-flexible">Cho phép sửa nước đã đi</button><button type="button" class="secondary-button" id="demo-current">Giữ nguyên các lựa chọn</button>';
     $('demo-message').after(scopeControls);
     $('demo-current').addEventListener('click', () => openDemo('current'));
-    $('demo-original').addEventListener('click', () => openDemo('original'));
+    $('demo-flexible').addEventListener('click', () => openDemo('flexible'));
   }
-  for (const name of ['current', 'original']) {
+  for (const name of ['current', 'flexible']) {
     $(`demo-${name}`).disabled = true;
     $(`demo-${name}`).setAttribute('aria-pressed', String(scope === name));
   }
   setBusy(true); stopDemo(); demoResult = null; demoVisibleTiles = null;
   $('demo-title').textContent = $('algorithm').value === 'dfs' ? 'Theo dấu DFS' : 'Theo dấu Greedy';
-  $('demo-message').textContent = scope === 'original' ? 'Máy đang giải màn gốc, được phép thay đổi các lựa chọn đã chơi. Bảng của bạn không bị thay đổi.' : 'Đang tìm lời giải giữ nguyên các lựa chọn hiện tại. Các ô ống mờ là những ô máy chưa gán hướng.';
+  $('demo-message').textContent = scope === 'flexible' ? 'Máy đang tìm lời giải, được phép xoay lại ống hoặc sửa đèn và dấu ×. Demo không thay đổi bảng bạn đang chơi.' : 'Đang kiểm tra xem có lời giải giữ nguyên mọi lựa chọn bạn đã đánh dấu hay không.';
   $('demo-board').replaceChildren(); $('demo-stats').replaceChildren(); $('demo-step-label').textContent = '';
   for (const id of ['demo-prev', 'demo-next', 'demo-play', 'demo-slider']) $(id).disabled = true;
   $('demo-solution').hidden = true;
@@ -297,8 +297,8 @@ async function openDemo(scope = 'current') {
     if (rev !== revision || !$('demo-dialog').open) return;
     demoResult = result; demoIndex = 0;
     $('demo-message').textContent = result.status === 'solved'
-      ? (scope === 'original' ? 'Đây là lời giải của màn gốc, có thể khác các nước bạn đã chơi. Demo không thay đổi bảng của bạn.' : 'Đã tìm được lời giải giữ nguyên các lựa chọn hiện tại. Demo không thay đổi bảng bạn đang chơi.')
-      : result.status === 'unsat' ? (scope === 'current' ? 'Không thể giải nếu giữ nguyên các lựa chọn hiện tại. Chọn “Cho máy giải lại màn gốc” để xem máy tìm lời giải khác, hoặc đóng và dùng Gợi ý để sửa từng bước.' : 'Máy đã xét hết các nhánh nhưng không tìm thấy lời giải cho màn gốc.')
+      ? (scope === 'flexible' ? 'Đã tìm được lời giải. Máy có thể sửa các nước đã đi; các bước dưới đây là trạng thái tìm kiếm, không bảo đảm ít thao tác sửa nhất. Bảng của bạn được giữ nguyên.' : 'Có lời giải giữ nguyên các lựa chọn đã đánh dấu. Demo không thay đổi bảng bạn đang chơi.')
+      : result.status === 'unsat' ? (scope === 'current' ? 'Một số lựa chọn đang mâu thuẫn khi bị giữ cố định. Điều này không có nghĩa màn chơi vô nghiệm. Chọn “Cho phép sửa nước đã đi” để máy tìm cách giải có điều chỉnh.' : 'Máy đã xét hết các nhánh nhưng không tìm thấy lời giải cho màn này.')
       : 'Đã chạm giới hạn tìm kiếm. Các trạng thái dưới đây là phần máy đã xét; chưa thể kết luận vô nghiệm.';
     if (result.trace_truncated) $('demo-message').textContent += ' Bản xem chỉ lưu 350 trạng thái đầu.';
     renderDemo();
@@ -310,7 +310,7 @@ async function openDemo(scope = 'current') {
   } catch (error) { $('demo-message').textContent = error.message; }
   finally {
     setBusy(false);
-    $('demo-current').disabled = false; $('demo-original').disabled = false;
+    $('demo-current').disabled = false; $('demo-flexible').disabled = false;
   }
 }
 

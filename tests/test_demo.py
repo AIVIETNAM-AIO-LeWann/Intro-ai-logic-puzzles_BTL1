@@ -7,6 +7,23 @@ from logic_lab.games.pipes import Pipes, orientations
 
 
 class DemoTests(unittest.TestCase):
+    def test_flexible_demo_can_repair_moves_in_both_games(self):
+        pipes = BY_ID['pipes-3']
+        tiles = pipes['_witness']['tiles'][:]
+        tiles[0] = next(v for v in orientations(tiles[0]) if v not in Pipes(pipes).options[0])
+        cases = [
+            {'level': 'pipes-3', 'state': {'tiles': tiles, 'fixed': [0]}},
+            {'level': 'lightup-3', 'state': {'bulbs': [1], 'crosses': [0, 2, 6, 8]}},
+        ]
+        for case in cases:
+            before = copy.deepcopy(case)
+            for algorithm in ('dfs', 'greedy'):
+                result = service.solve({**case, 'scope': 'flexible', 'algorithm': algorithm}, trace=True)
+                self.assertEqual(result['status'], 'solved')
+                self.assertTrue(result['trace'])
+                self.assertTrue(service.check({'level': case['level'], 'state': result['solution']})['solved'])
+            self.assertEqual(case, before)
+
     def test_wrong_lightup_move_can_be_relaxed_without_changing_input(self):
         data = {"level": "lightup-3", "state": {"bulbs": [1], "crosses": []}}
         original = copy.deepcopy(data)
