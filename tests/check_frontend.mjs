@@ -63,7 +63,7 @@ const historyContext = vm.createContext({
 });
 vm.runInContext(appSource + `
   render = () => {}; renderLevels = () => {}; clearHint = () => {};
-  notify = () => {}; save = () => {};
+  notify = () => {}; save = () => {}; setBusy = value => { busy = value; };
   level = { id: 'lightup-3', game: 'lightup' };
   state = { bulbs: [0, 8], crosses: [] }; moveCount = 2; elapsed = 12;
   completed = new Set(['lightup-3', 'pipes-3']);
@@ -77,3 +77,5 @@ assert.deepEqual(historyState(), { state: { bulbs: [0, 8], crosses: [] }, moveCo
 vm.runInContext('travel(false)', historyContext);
 assert.deepEqual(historyState(), { state: { bulbs: [], crosses: [] }, moveCount: 0, elapsed: 0, done: ['pipes-3'] });
 console.log('Reset, undo and redo completion-state checks passed.');
+
+await import('./check_interactions.mjs');

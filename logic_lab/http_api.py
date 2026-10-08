@@ -16,6 +16,7 @@ FILES = {"/": ("index.html", "text/html; charset=utf-8"),
          "/pipe-hint.js": ("pipe-hint.js", "text/javascript; charset=utf-8"),
          "/pipe-hint.css": ("pipe-hint.css", "text/css; charset=utf-8"),
          "/victory.css": ("victory.css", "text/css; charset=utf-8"),
+         "/usability.css": ("usability.css", "text/css; charset=utf-8"),
          "/style.css": ("style.css", "text/css; charset=utf-8"),
          "/favicon.svg": ("favicon.svg", "image/svg+xml")}
 SECURITY_HEADERS = [

@@ -20,6 +20,10 @@ Người chơi bấm Gợi ý
 
 Mỗi yêu cầu gợi ý dùng bản chụp trạng thái. Nếu người chơi thay đổi bảng trong lúc chờ, giao diện bỏ kết quả cũ để tránh gợi ý sai ngữ cảnh. Máy không chạy full search sau mỗi lần click.
 
+Giao diện hủy chờ yêu cầu cũ khi đổi bảng, đổi thuật toán hoặc đóng demo; mỗi yêu cầu có hạn chờ 15 giây. Python có thể vẫn hoàn tất lần tìm đang chạy trong ngân sách của solver. Phản hồi cũ không được thay đổi thông báo hay trạng thái bận của yêu cầu mới. Xác nhận hoàn thành đối chiếu cả phiên bản bảng và nội dung bảng; nếu kết nối lỗi, người chơi có nút xác nhận lại.
+
+Đồng hồ tính thời gian chơi khi trang đang hiển thị và không mở hộp thoại. Hoàn tác nước đi không giảm thời gian. Chơi lại tạo lượt mới, đồng hồ bắt đầu từ thao tác đầu tiên; hoàn tác việc chơi lại khôi phục thời gian của lượt trước.
+
 ## Pipes
 
 Mảnh ống dùng bitmask: trên = 1, phải = 2, dưới = 4, trái = 8. Ví dụ 6 = phải + dưới. Phép xoay là quay vòng bốn bit. Ống thẳng có hai hướng phân biệt, ống chữ thập có một; không sinh bản sao đối xứng.

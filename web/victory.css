@@ -1,4 +1,4 @@
-.victory-dialog{text-align:center;max-width:440px;padding:35px 30px 27px;overflow:hidden}
+.victory-dialog{text-align:center;max-width:440px;padding:35px 30px 27px;overflow-y:auto}
 #victory-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border:1px solid #d5dfc9;background:#f0f5e9;color:#365944;border-radius:50%;font-size:25px;z-index:1}
 #demo-scope-controls{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}
 #demo-scope-controls button{flex:1;justify-content:center;min-height:40px;font-size:11px}
@@ -9,7 +9,7 @@
 .victory-dialog p{font-size:13px;margin-bottom:22px}
 .victory-stats{display:flex;justify-content:center;gap:45px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:20px 0}
 .victory-stats strong{display:block;font-size:27px;font-weight:600;font-variant-numeric:tabular-nums}
-.victory-stats span{display:block;font-size:8px;letter-spacing:1.3px;color:var(--muted);margin-top:6px}
+.victory-stats span{display:block;font-size:10px;letter-spacing:1px;color:#64745d;margin-top:6px}
 .victory-dialog .primary-button{width:100%;font-size:13px;padding:14px;margin-top:4px}
 .victory-dialog #victory-stay{display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;margin:14px 0 0;padding:12px 16px;border:1px solid #b8c9aa;border-radius:8px;background:#f0f5e9;color:#365944;font-size:13px;font-weight:600;line-height:1.5;text-align:center}
 .victory-dialog #victory-stay:hover{background:#e4eed8;border-color:#8fa77c}

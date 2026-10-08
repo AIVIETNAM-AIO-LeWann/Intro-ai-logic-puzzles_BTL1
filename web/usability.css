@@ -1,0 +1,26 @@
+/* Keep controls reachable on touch screens, zoomed pages and short viewports. */
+dialog { max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; }
+.play-toolbar { flex-wrap: wrap; }
+.icon-button { min-width: 40px; min-height: 40px; }
+.primary-button, .secondary-button, .tool-button, select { min-height: 42px; font-size: 12px; }
+.board-caption, .board-footer, .status-message, .coach-footnote,
+.coach-detail, .last-metrics, .algorithm-card p, .algorithm-card label,
+.progress-heading span, .demo-note, #demo-step-label { font-size: 12px; line-height: 1.7; color: #5c7056; }
+.board-footer { flex-wrap: wrap; gap: 8px; }
+.demo-stat { min-width: 0; }
+.demo-stat strong { overflow-wrap: anywhere; }
+#retry-win { margin-top: 12px; width: 100%; }
+.cell:focus-visible { outline-offset: -4px; z-index: 2; }
+#demo-scope-controls button { min-height: 44px; font-size: 12px; }
+@media (max-width: 600px) {
+  .icon-button, #victory-close { min-width: 44px; min-height: 44px; }
+  .primary-button, .secondary-button, .tool-button, .text-button, select { min-height: 44px; }
+  .level-choice { min-height: 44px; }
+  .insight-column { grid-template-columns: minmax(0, 1fr); }
+  .algorithm-card select, .algorithm-card .secondary-button { font-size: 12px; }
+  .demo-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .demo-stat small { font-size: 10px; }
+  .victory-dialog { padding: 60px 20px 24px; }
+  .topbar { gap: 12px; }
+  .topbar > span { max-width: 60%; line-height: 1.7; }
+}

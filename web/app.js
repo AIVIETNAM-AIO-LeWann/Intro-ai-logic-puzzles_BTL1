@@ -10,6 +10,18 @@ let currentHint = null, revision = 0, busy = false, tool = 'bulb', completed = n
 let demoResult = null, demoIndex = 0, demoTimer = null, toastTimer = null, solved = false;
 let announcedWin = null, pendingWin = null;
 let demoVisibleTiles = null;
+let attempt = 0, activeSearch = null;
+
+function cancelSearch() {
+  activeSearch?.abort(); activeSearch = null;
+  setBusy(false);
+}
+
+function tickClock() {
+  if (started && !solved && !document.hidden && !document.querySelector('dialog[open]')) {
+    elapsed++; renderTimer(); if (elapsed % 5 === 0) save();
+  }
+}
 
 function winningBoardKey() { return JSON.stringify([level.id, state]); }
 
@@ -36,7 +48,7 @@ function showVictory() {
   $('victory-time').textContent = $('timer').textContent;
   const sameGame = levels.filter(item => item.game === level.game);
   const index = sameGame.findIndex(item => item.id === level.id);
-  const next = sameGame[index + 1] || sameGame.find(item => !completed.has(item.id))
+  const next = sameGame.slice(index + 1).find(item => !completed.has(item.id)) || sameGame.find(item => !completed.has(item.id))
     || levels.find(item => item.game !== level.game && !completed.has(item.id));
   $('victory-next').hidden = !next;
   if (next) {
@@ -54,7 +66,7 @@ function notify(message) {
 }
 function save() {
   if (!level) return;
-  saved[level.id] = { state: clone(state), moves: moveCount, elapsed, started };
+  saved[level.id] = { state: clone(state), moves: moveCount, elapsed, started, attempt };
   try { localStorage.setItem(STORE, JSON.stringify({ saved, completed: [...completed], selected: level.id })); }
   catch { /* The app remains fully usable with storage disabled. */ }
 }
@@ -76,21 +88,30 @@ function clearHint() {
   $('coach-title').textContent = 'Một chút gợi mở?';
   $('coach-message').textContent = 'Cứ thử ý tưởng của bạn. Khi cần, mình sẽ tìm một nước đi tiếp từ chính bảng bạn đang chơi.';
 }
-function snapshot() { return { state: clone(state), moves: moveCount, elapsed, started, completed: completed.has(level.id) }; }
-function commit(change) {
+function snapshot() { return { state: clone(state), moves: moveCount, elapsed, started, attempt, completed: completed.has(level.id) }; }
+function commit(change, { reset = false } = {}) {
+  cancelSearch();
   history.push(snapshot()); if (history.length > 500) history.shift(); future = [];
-  change(); moveCount++; started = true; revision++; clearHint(); render(); save();
+  change();
+  if (reset) { attempt++; moveCount = 0; elapsed = 0; started = false; }
+  else { moveCount++; started = true; }
+  revision++; clearHint(); render(); save();
 }
 function selectLevel(id) {
+  if (level?.id === id) return;
+  cancelSearch(); stopDemo();
   $('victory-dialog')?.close();
   announcedWin = null;
   if (level) save();
   level = levels.find(item => item.id === id) || levels[0];
   const previous = saved[level.id];
-  state = validSaved(level, previous?.state) ? clone(previous.state) : fresh(level);
-  moveCount = Number.isFinite(previous?.moves) ? Math.max(0, previous.moves) : 0;
-  elapsed = Number.isFinite(previous?.elapsed) ? Math.max(0, previous.elapsed) : 0;
-  started = Boolean(previous?.started); history = []; future = []; revision++; clearHint();
+  const valid = validSaved(level, previous?.state);
+  state = valid ? clone(previous.state) : fresh(level);
+  moveCount = valid && Number.isSafeInteger(previous?.moves) ? Math.max(0, previous.moves) : 0;
+  elapsed = valid && Number.isSafeInteger(previous?.elapsed) ? Math.max(0, previous.elapsed) : 0;
+  attempt = valid && Number.isSafeInteger(previous?.attempt) ? previous.attempt : 0;
+  started = valid && Boolean(previous?.started); history = []; future = []; revision++; clearHint();
+  $('last-metrics').textContent = 'Chọn thuật toán để xem cách máy tìm lời giải';
   const pipes = level.game === 'pipes';
   $('game-title').innerHTML = pipes ? 'Pipes<span>.</span>' : 'Light Up<span>.</span>';
   $('game-eyebrow').textContent = pipes ? '01 / KẾT NỐI' : '02 / THẮP SÁNG';
@@ -123,6 +144,7 @@ function render() {
   const status = drawBoard($('board'), level, state, { hintCell: currentHint?.action?.cell });
   if (focusCell !== undefined) $('board').querySelector(`[data-cell="${focusCell}"]`)?.focus({ preventScroll: true });
   solved = status.solved;
+  $('retry-win').hidden = true;
   if (!solved) announcedWin = null;
   const pipes = level.game === 'pipes';
   const percent = pipes ? Math.round(status.connected_edges / status.total_edges * 100) : Math.round(status.lit_count / status.white_count * 100);
@@ -134,7 +156,7 @@ function render() {
   if (solved) {
     $('status-message').textContent = 'Hoàn thành! Bảng của bạn thỏa tất cả quy tắc.';
     $('status-message').classList.add('success'); $('progress-label').textContent = '✓ Đã giải đúng';
-    if (announcedWin !== winningBoardKey() && pendingWin !== winningBoardKey()) validateWin();
+    if (announcedWin !== winningBoardKey() && (pendingWin?.key !== winningBoardKey() || pendingWin?.revision !== revision)) validateWin();
   } else if (!pipes && status.errors.length) {
     $('status-message').textContent = 'Có đèn chiếu vào nhau hoặc vượt số đèn cạnh ô đen. Các ô liên quan được tô đỏ.';
     $('status-message').classList.add('warning'); $('progress-label').textContent = 'Cần xem lại';
@@ -149,16 +171,28 @@ function render() {
   $('hint-button').disabled = busy || solved; $('demo-open').disabled = busy;
 }
 async function validateWin() {
-  const key = winningBoardKey(), id = level.id;
-  pendingWin = key;
+  const key = winningBoardKey(), id = level.id, rev = revision;
+  const token = { key, revision: rev }; pendingWin = token;
+  $('retry-win').hidden = true;
   try {
     const result = await request('/api/check', payload());
-    if (key !== winningBoardKey() || !result.solved || announcedWin === key) return;
+    if (rev !== revision || key !== winningBoardKey() || announcedWin === key) return;
+    if (!result.solved) throw new Error('Máy chưa xác nhận bảng đã đúng. Hãy tải lại trang để kiểm tra phiên bản trò chơi.');
     completed.add(id); renderLevels(); save();
     announcedWin = key;
+    $('status-message').textContent = 'Hoàn thành! Bảng của bạn thỏa tất cả quy tắc.';
+    $('status-message').className = 'status-message success';
+    $('progress-label').textContent = '✓ Đã giải đúng';
     showVictory();
-  } catch (error) { notify(error.message); }
-  finally { if (pendingWin === key) pendingWin = null; }
+  } catch (error) {
+    if (rev === revision) {
+      $('status-message').textContent = 'Chưa xác nhận được kết quả hoàn thành. ' + error.message;
+      $('status-message').className = 'status-message warning';
+      $('progress-label').textContent = 'Chờ xác nhận';
+      $('retry-win').hidden = false;
+    }
+  }
+  finally { if (pendingWin === token) pendingWin = null; }
 }
 function renderTimer() { $('timer').textContent = `${String(Math.floor(elapsed / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`; }
 function payload() { return { level: level.id, state: clone(state), algorithm: $('algorithm').value }; }
@@ -173,9 +207,11 @@ function metricsText(metrics) {
 async function getHint() {
   if (busy || solved) return;
   setBusy(true); clearHint(); const rev = revision;
+  const controller = new AbortController(); activeSearch = controller;
   $('coach-title').textContent = 'Đang nối các ý tưởng…'; $('coach-message').textContent = 'Máy đang tìm lời giải có giữ những lựa chọn hiện tại của bạn.';
   try {
-    const result = await request('/api/hint', payload());
+    const result = await request('/api/hint', payload(), { signal: controller.signal });
+    if (controller.signal.aborted) return;
     if (rev !== revision) { notify('Bảng đã thay đổi. Hãy xin gợi ý lại từ trạng thái mới.'); return; }
     currentHint = result;
     $('coach-title').textContent = ({ hint: 'Thử ô được đánh dấu.', repair: 'Cần sửa một lựa chọn.', limit: 'Cần thêm thời gian.', repair_limit: 'Nhánh này chưa có lối ra.', complete: 'Bạn đã làm được!' })[result.status] || 'Kết quả tìm kiếm';
@@ -190,8 +226,8 @@ async function getHint() {
     document.querySelector('.coach-card').classList.toggle('repair', result.status.startsWith('repair'));
     if (result.metrics) $('last-metrics').textContent = metricsText(result.metrics);
     render();
-  } catch (error) { $('coach-title').textContent = 'Chưa kết nối được.'; $('coach-message').textContent = error.message; }
-  finally { setBusy(false); }
+  } catch (error) { if (!controller.signal.aborted && rev === revision) { $('coach-title').textContent = 'Chưa kết nối được.'; $('coach-message').textContent = error.message; } }
+  finally { if (activeSearch === controller) { activeSearch = null; setBusy(false); } }
 }
 function applyHint() {
   const action = currentHint?.action; if (!action) return;
@@ -224,17 +260,18 @@ function playCell(cell, right = false) {
 function travel(back) {
   const source = back ? history : future, destination = back ? future : history;
   if (!source.length) return;
+  cancelSearch();
   destination.push(snapshot()); const entry = source.pop(); state = entry.state; moveCount = entry.moves;
-  elapsed = entry.elapsed; started = entry.started;
+  if (entry.attempt !== attempt) { elapsed = entry.elapsed; started = entry.started; attempt = entry.attempt; }
   if (entry.completed) completed.add(level.id); else completed.delete(level.id);
   revision++; clearHint(); renderLevels(); render(); save();
 }
 function resetPuzzle() {
   commit(() => {
-    state = fresh(level); moveCount = -1; elapsed = 0;
+    state = fresh(level);
     completed.delete(level.id);
     announcedWin = null;
-  });
+  }, { reset: true });
   renderLevels();
   $('reset-dialog').close();
   notify('Bảng và dấu hoàn thành đã được đặt lại. Bạn vẫn có thể hoàn tác.');
@@ -292,9 +329,10 @@ async function openDemo(scope = 'flexible') {
   $('demo-solution').hidden = true;
   if (!$('demo-dialog').open) $('demo-dialog').showModal();
   const rev = revision;
+  const controller = new AbortController(); activeSearch = controller;
   try {
-    const result = await request('/api/solve', { ...payload(), scope });
-    if (rev !== revision || !$('demo-dialog').open) return;
+    const result = await request('/api/solve', { ...payload(), scope }, { signal: controller.signal });
+    if (controller.signal.aborted || rev !== revision || !$('demo-dialog').open) return;
     demoResult = result; demoIndex = 0;
     $('demo-message').textContent = result.status === 'solved'
       ? (scope === 'flexible' ? 'Máy đã tìm ra cách giải và có thể đổi lại vài nước bạn đã đi. Bạn đang xem thử, bảng đang chơi chưa thay đổi.' : 'Máy đã tìm ra cách giải tiếp mà không đổi các nước bạn đã đi. Bạn đang xem thử, bảng đang chơi chưa thay đổi.')
@@ -307,26 +345,29 @@ async function openDemo(scope = 'flexible') {
       $('demo-step-label').textContent = 'Bảng hiện tại · chưa có trạng thái tìm kiếm để phát';
     }
     $('last-metrics').textContent = metricsText(result.metrics);
-  } catch (error) { $('demo-message').textContent = error.message; }
+  } catch (error) { if (!controller.signal.aborted && rev === revision && $('demo-dialog').open) $('demo-message').textContent = error.message; }
   finally {
-    setBusy(false);
-    $('demo-current').disabled = false; $('demo-flexible').disabled = false;
+    if (activeSearch === controller) {
+      activeSearch = null; setBusy(false);
+      $('demo-current').disabled = false; $('demo-flexible').disabled = false;
+    }
   }
 }
 
 function events() {
-  document.querySelectorAll('[data-game]').forEach(button => button.addEventListener('click', () => selectLevel(levels.find(l => l.game === button.dataset.game).id)));
+  document.querySelectorAll('[data-game]').forEach(button => button.addEventListener('click', () => { if (level.game !== button.dataset.game) selectLevel(levels.find(l => l.game === button.dataset.game).id); }));
   $('board').addEventListener('click', event => { const cell = event.target.closest('[data-cell]'); if (cell) playCell(Number(cell.dataset.cell)); });
   $('board').addEventListener('contextmenu', event => { const cell = event.target.closest('[data-cell]'); if (cell) { event.preventDefault(); playCell(Number(cell.dataset.cell), true); } });
   $('undo').addEventListener('click', () => travel(true)); $('redo').addEventListener('click', () => travel(false));
   $('reset').addEventListener('click', () => $('reset-dialog').showModal());
   $('confirm-reset').addEventListener('click', resetPuzzle);
   $('hint-button').addEventListener('click', getHint); $('apply-hint').addEventListener('click', applyHint);
+  $('retry-win').addEventListener('click', () => { if (solved && !pendingWin) validateWin(); });
   $('rules-open').addEventListener('click', showRules); $('demo-open').addEventListener('click', openDemo);
   document.querySelectorAll('.dialog-close').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
-  $('demo-dialog').addEventListener('close', stopDemo);
-  $('algorithm').addEventListener('change', () => { revision++; $('algorithm-summary').textContent = $('algorithm').value === 'dfs' ? 'Đi sâu theo một nhánh, quay lại khi gặp bế tắc.' : 'Ưu tiên trạng thái có điểm heuristic thấp hơn.'; clearHint(); render(); });
-  document.querySelectorAll('[data-tool]').forEach(button => button.addEventListener('click', () => { tool = button.dataset.tool; document.querySelectorAll('[data-tool]').forEach(b => b.classList.toggle('active', b === button)); }));
+  $('demo-dialog').addEventListener('close', () => { stopDemo(); cancelSearch(); });
+  $('algorithm').addEventListener('change', () => { cancelSearch(); revision++; $('algorithm-summary').textContent = $('algorithm').value === 'dfs' ? 'Đi sâu theo một nhánh, quay lại khi gặp bế tắc.' : 'Ưu tiên trạng thái có điểm heuristic thấp hơn.'; clearHint(); render(); });
+  document.querySelectorAll('[data-tool]').forEach(button => button.addEventListener('click', () => { tool = button.dataset.tool; document.querySelectorAll('[data-tool]').forEach(b => { b.classList.toggle('active', b === button); b.setAttribute('aria-pressed', String(b === button)); }); }));
   $('demo-prev').addEventListener('click', () => { stopDemo(); demoIndex = Math.max(0, demoIndex - 1); renderDemo(); });
   $('demo-next').addEventListener('click', () => { stopDemo(); demoIndex = Math.min(demoResult.trace.length - 1, demoIndex + 1); renderDemo(); });
   $('demo-slider').addEventListener('input', event => { stopDemo(); demoIndex = Number(event.target.value); renderDemo(); });
@@ -344,7 +385,7 @@ function events() {
     else if (!event.ctrlKey && !event.metaKey && level.game === 'lightup' && ['b', 'x'].includes(event.key.toLowerCase())) document.querySelector(`[data-tool="${event.key.toLowerCase() === 'b' ? 'bulb' : 'cross'}"]`).click();
   });
   window.addEventListener('beforeunload', save);
-  setInterval(() => { if (started && !solved && !document.hidden) { elapsed++; renderTimer(); if (elapsed % 5 === 0) save(); } }, 1000);
+  setInterval(tickClock, 1000);
 }
 
 async function init() {
