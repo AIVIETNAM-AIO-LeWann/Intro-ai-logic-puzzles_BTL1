@@ -61,7 +61,9 @@ class LightUp:
 
     def goal(self, state):
         bulbs, lit = self.info(state)
-        return len(lit) == len(state) and all(sum(i in bulbs for i in adj) == k for _, k, adj in self.clues)
+        return (len(lit) == len(state)
+                and not any((self.visibility[i] - {i}) & bulbs for i in bulbs)
+                and all(sum(i in bulbs for i in adj) == k for _, k, adj in self.clues))
 
     def successors(self, state, candidates):
         i = state.index(-1)

@@ -1,0 +1,5 @@
+[
+  {"id": "pipes-example", "game": "pipes", "rows": 2, "cols": 2, "tiles": [1, 3, 4, 6]},
+  {"id": "akari-example", "game": "lightup", "rows": 3, "cols": 3, "board": ["...", ".0.", "..."]},
+  {"id": "akari-unsat", "game": "lightup", "rows": 1, "cols": 2, "board": ["0."]}
+]

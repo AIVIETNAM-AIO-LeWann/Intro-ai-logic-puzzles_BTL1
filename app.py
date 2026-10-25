@@ -39,8 +39,10 @@ def main():
     parser = argparse.ArgumentParser(description="Mạch — Logic Lab")
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
+    if not 0 <= args.port <= 65535:
+        parser.error("--port phải nằm trong khoảng 0–65535 (0: chọn cổng trống).")
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
-    print(f"Logic Lab: http://127.0.0.1:{args.port}", flush=True)
+    print(f"Logic Lab: http://127.0.0.1:{server.server_port}", flush=True)
     print("Nhan Ctrl+C de dung. Python 3.10+; khong can cai thu vien.", flush=True)
     try:
         server.serve_forever()

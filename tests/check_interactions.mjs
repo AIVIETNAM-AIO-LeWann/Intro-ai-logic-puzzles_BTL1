@@ -128,6 +128,15 @@ for (const rejectOld of [false, true]) {
 // A failed victory validation offers a retry without changing the solved board.
 {
   const h = harness();
+  h.run("completed.add(level.id); playCell(0); playCell(8)");
+  h.pending[0].resolve({solved: true}); await new Promise(setImmediate);
+  assert.equal(h.element('victory-dialog').open, false, 'Restoring a completed board should not repeat the celebration');
+  assert.equal(h.run('announcedWin === winningBoardKey()'), true);
+}
+
+// A failed victory validation offers a retry without changing the solved board.
+{
+  const h = harness();
   h.run('playCell(0); playCell(8)');
   h.pending[0].reject(new Error('offline')); await new Promise(setImmediate);
   assert.equal(h.element('retry-win').hidden, false);

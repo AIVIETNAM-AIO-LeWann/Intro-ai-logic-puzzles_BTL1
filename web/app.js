@@ -124,7 +124,11 @@ function selectLevel(id) {
   $('hint-policy').textContent = pipes ? 'Gợi ý giữ hướng các ô bạn đã chỉnh. Ô có chấm nhỏ là ô đã chỉnh.' : 'Gợi ý giữ cả đèn và dấu × bạn đã đặt. Dấu × nghĩa là không đặt đèn ở ô đó.';
   $('light-tools').hidden = pipes;
   document.querySelector('.heading-art').style.opacity = pipes ? '.55' : '.28';
-  document.querySelectorAll('[data-game]').forEach(button => button.classList.toggle('active', button.dataset.game === level.game));
+  document.querySelectorAll('[data-game]').forEach(button => {
+    const active = button.dataset.game === level.game;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
   renderLevels(); render(); save();
 }
 function renderLevels() {
@@ -178,12 +182,13 @@ async function validateWin() {
     const result = await request('/api/check', payload());
     if (rev !== revision || key !== winningBoardKey() || announcedWin === key) return;
     if (!result.solved) throw new Error('Máy chưa xác nhận bảng đã đúng. Hãy tải lại trang để kiểm tra phiên bản trò chơi.');
+    const firstCompletion = !completed.has(id);
     completed.add(id); renderLevels(); save();
     announcedWin = key;
     $('status-message').textContent = 'Hoàn thành! Bảng của bạn thỏa tất cả quy tắc.';
     $('status-message').className = 'status-message success';
     $('progress-label').textContent = '✓ Đã giải đúng';
-    showVictory();
+    if (firstCompletion) showVictory();
   } catch (error) {
     if (rev === revision) {
       $('status-message').textContent = 'Chưa xác nhận được kết quả hoàn thành. ' + error.message;
@@ -281,6 +286,7 @@ function showRules() {
   $('rules-content').innerHTML = pipes
     ? '<ol><li>Nhấn một ô để xoay ống 90° theo chiều kim đồng hồ. Chuột phải để xoay ngược.</li><li>Mọi đầu ống phải khớp với ô bên cạnh và không chĩa ra ngoài bảng.</li><li>Tất cả ống phải nối thành <strong>một mạng duy nhất, không có vòng kín</strong>.</li></ol><div class="rule-note">Gợi ý giữ hướng các ô bạn đã chỉnh (có chấm nhỏ). Nếu những lựa chọn này mâu thuẫn, máy đề xuất một bước sửa và chờ bạn áp dụng. Hoàn tác sẽ khôi phục cả hướng ống lẫn dấu đã chỉnh.</div><p>Nguồn luật: <a href="https://www.puzzle-pipes.com/" target="_blank" rel="noreferrer">puzzle-pipes.com</a>. Các màn trong ứng dụng được tạo riêng, không nối xuyên biên.</p>'
     : '<ol><li>Nhấn ô trắng để đặt hoặc bỏ đèn. Đèn chiếu theo hàng và cột, dừng ở ô đen.</li><li>Chiếu sáng <strong>tất cả ô trắng</strong>. Hai bóng đèn không được chiếu trực tiếp vào nhau.</li><li>Ô đen mang số cần đúng bấy nhiêu đèn kề cạnh (không tính đường chéo). Số 0 nghĩa là không có đèn kề cạnh.</li><li>Chuột phải hoặc chọn “Đánh dấu” để đặt dấu ×: bạn quyết định không đặt đèn ở ô đó. Ô × vẫn có thể được chiếu sáng.</li></ol><div class="rule-note">Các tia sáng được giao nhau. Gợi ý giữ nguyên cả đèn và dấu × của bạn. Nếu cần sửa, máy giải thích trước và không tự thay đổi bảng.</div><p>Nguồn luật: <a href="https://www.puzzle-light-up.com/" target="_blank" rel="noreferrer">puzzle-light-up.com</a>. Các màn trong ứng dụng được tạo riêng.</p>';
+  $('rules-content').innerHTML += '<p><strong>Bàn phím:</strong> Tab để vào bảng, phím mũi tên để chọn ô; Home/End đến đầu/cuối hàng. Enter hoặc Space để chơi, Shift + Enter để xoay ngược hoặc đặt dấu ×. Ctrl + Z để hoàn tác; Ctrl + Shift + Z để làm lại.</p>';
   $('rules-dialog').showModal();
 }
 function stopDemo() { clearInterval(demoTimer); demoTimer = null; $('demo-play').textContent = 'Tự chạy'; }
@@ -300,6 +306,9 @@ function renderDemo(solution = false) {
   $('demo-stats').innerHTML = stats.map(([v, label]) => `<div class="demo-stat"><small>${label}</small><strong>${v}</strong></div>`).join('');
   $('demo-slider').max = Math.max(0, trace.length - 1); $('demo-slider').value = demoIndex;
   $('demo-step-label').textContent = solution ? 'Bảng lời giải · bảng chơi của bạn được giữ nguyên' : `Trạng thái ${trace.length ? demoIndex + 1 : 0} / ${trace.length}${demoResult.trace_truncated ? ' · chỉ lưu 350 trạng thái đầu' : ''}`;
+  if (!solution && level.game === 'pipes' && entry?.state.tiles.some(mask => !mask)) {
+    $('demo-step-label').textContent += ' · Ống mờ: chưa gán hướng';
+  }
   $('demo-prev').disabled = !trace.length || demoIndex === 0;
   $('demo-next').disabled = !trace.length || demoIndex >= trace.length - 1;
   $('demo-play').disabled = trace.length < 2; $('demo-slider').disabled = !trace.length;
@@ -356,8 +365,34 @@ async function openDemo(scope = 'flexible') {
 
 function events() {
   document.querySelectorAll('[data-game]').forEach(button => button.addEventListener('click', () => { if (level.game !== button.dataset.game) selectLevel(levels.find(l => l.game === button.dataset.game).id); }));
-  $('board').addEventListener('click', event => { const cell = event.target.closest('[data-cell]'); if (cell) playCell(Number(cell.dataset.cell)); });
+  $('board').addEventListener('click', event => { const cell = event.target.closest('[data-cell]'); if (cell) playCell(Number(cell.dataset.cell), event.shiftKey || event.ctrlKey || event.metaKey); });
   $('board').addEventListener('contextmenu', event => { const cell = event.target.closest('[data-cell]'); if (cell) { event.preventDefault(); playCell(Number(cell.dataset.cell), true); } });
+  $('board').addEventListener('keydown', event => {
+    const cell = event.target.closest('[data-cell]');
+    if (!cell) return;
+    const index = Number(cell.dataset.cell);
+    if (event.shiftKey && ['Enter', ' '].includes(event.key)) {
+      event.preventDefault(); playCell(index, true); return;
+    }
+    if (!['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const cells = [...$('board').querySelectorAll('[data-cell]')];
+    const row = Math.floor(index / level.cols);
+    const enabled = cells.filter(node => !node.disabled);
+    let target;
+    if (event.key === 'Home' || event.key === 'End') {
+      const candidates = event.ctrlKey || event.metaKey ? enabled
+        : enabled.filter(node => Math.floor(Number(node.dataset.cell) / level.cols) === row);
+      target = event.key === 'Home' ? candidates[0] : candidates.at(-1);
+    } else {
+      const delta = {ArrowUp: -level.cols, ArrowRight: 1, ArrowDown: level.cols, ArrowLeft: -1}[event.key];
+      for (let next = index + delta; next >= 0 && next < cells.length; next += delta) {
+        if (Math.abs(delta) === 1 && Math.floor(next / level.cols) !== row) break;
+        if (!cells[next].disabled) { target = cells[next]; break; }
+      }
+    }
+    target?.focus();
+  });
   $('undo').addEventListener('click', () => travel(true)); $('redo').addEventListener('click', () => travel(false));
   $('reset').addEventListener('click', () => $('reset-dialog').showModal());
   $('confirm-reset').addEventListener('click', resetPuzzle);

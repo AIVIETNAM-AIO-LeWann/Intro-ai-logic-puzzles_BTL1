@@ -93,6 +93,11 @@ class RuleTests(unittest.TestCase):
         self.assertTrue(p.check([0, 2])["solved"])
         self.assertEqual(p.check([0])["lit"], [0])
 
+    def test_goal_rejects_bulbs_that_illuminate_each_other(self):
+        p = LightUp({"board": [".."]})
+        self.assertFalse(p.goal((1, 1)))
+        self.assertTrue(p.goal((1, -1)))
+
     def test_zero_wall_and_crosses_can_make_unsat(self):
         self.assertEqual(search(LightUp(BY_ID["lightup-3"], bulbs=[1]))["status"], "unsat")
         self.assertEqual(search(LightUp(BY_ID["lightup-3"], crosses=[0, 2, 6, 8]))["status"], "unsat")

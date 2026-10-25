@@ -11,7 +11,7 @@ for (const file of ['api.js', 'board.js', 'app.js', 'pipe-hint.js']) {
   const source = fs.readFileSync(path.join(root, 'web', file), 'utf8');
   new vm.Script(source.replace(/^import .*;\s*$/gm, '').replace(/\bexport\s+(?=(?:async\s+)?function|const|let)/g, ''), { filename: file });
 }
-const generated = spawnSync('python', ['tests/frontend_cases.py'], { cwd: root, encoding: 'utf8' });
+const generated = spawnSync(process.env.PYTHON || 'python', ['tests/frontend_cases.py'], { cwd: root, encoding: 'utf8', env: {...process.env, PYTHONUTF8: '1'} });
 assert.equal(generated.status, 0, generated.stderr || generated.error?.message);
 const cases = JSON.parse(generated.stdout);
 const source = fs.readFileSync(path.join(root, 'web/board.js'), 'utf8');

@@ -1,376 +1,5837 @@
 {
-  "python": "3.10.11",
-  "platform": "Windows-10-10.0.22621-SP0",
-  "repeat": 5,
-  "scope": "search only, no UI/HTTP/trace; peak Python allocations, not RSS",
+  "schema_version": 2,
+  "created_utc": "2026-10-25T13:38:49.795438+00:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "git": {
+    "commit": "b9720c6cf78d60cff85ddaadd363f65fc3005da8",
+    "dirty": true
+  },
+  "source_sha256": "099ca1fab095061fcedca7bcf604be403df7764d23fc073f5c9b8385587ca78b",
+  "repeat": 7,
+  "suite": "extended",
+  "limits": {
+    "timeout_seconds": 4.0,
+    "max_nodes": 100000,
+    "memory_timeout_seconds": 30.0
+  },
+  "scope": "search only, no construction/UI/HTTP/trace; isolated peak Python allocations, not RSS",
+  "inputs_sha256": "a71abd6a65c3bed8f523a15c4636f54ed6f1db8fd242bcbbe5383c709d5fe3d7",
+  "inputs": [
+    {
+      "id": "pipes-3",
+      "game": "pipes",
+      "rows": 3,
+      "cols": 3,
+      "title": "Mạch đầu tiên",
+      "difficulty": "Làm quen",
+      "description": "Một bảng nhỏ để làm quen với các góc nối.",
+      "tiles": [
+        2,
+        9,
+        9,
+        5,
+        5,
+        10,
+        9,
+        3,
+        1
+      ],
+      "seed": 11
+    },
+    {
+      "id": "pipes-4",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "title": "Những ngã rẽ",
+      "difficulty": "Cơ bản",
+      "description": "Theo dấu đường ống qua những khúc quanh.",
+      "tiles": [
+        2,
+        2,
+        10,
+        6,
+        10,
+        6,
+        6,
+        5,
+        5,
+        10,
+        5,
+        10,
+        12,
+        3,
+        6,
+        9
+      ],
+      "seed": 27
+    },
+    {
+      "id": "pipes-5",
+      "game": "pipes",
+      "rows": 5,
+      "cols": 5,
+      "title": "Mạng lưới xanh",
+      "difficulty": "Thử thách",
+      "description": "Quan sát cả mạng, đừng chỉ nhìn một ô.",
+      "tiles": [
+        4,
+        6,
+        9,
+        13,
+        6,
+        6,
+        9,
+        1,
+        10,
+        5,
+        10,
+        9,
+        10,
+        9,
+        5,
+        5,
+        3,
+        5,
+        3,
+        5,
+        9,
+        5,
+        5,
+        9,
+        4
+      ],
+      "seed": 43
+    },
+    {
+      "id": "pipes-6",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "title": "Kết nối cuối cùng",
+      "difficulty": "Mở rộng",
+      "description": "Một mạng lớn hơn cho buổi thực hành tìm kiếm.",
+      "tiles": [
+        1,
+        8,
+        13,
+        6,
+        6,
+        12,
+        3,
+        5,
+        9,
+        12,
+        3,
+        10,
+        2,
+        3,
+        3,
+        9,
+        10,
+        3,
+        13,
+        3,
+        10,
+        10,
+        3,
+        3,
+        5,
+        4,
+        12,
+        9,
+        5,
+        10,
+        6,
+        13,
+        10,
+        10,
+        3,
+        4
+      ],
+      "seed": 71
+    },
+    {
+      "id": "lightup-3",
+      "game": "lightup",
+      "rows": 3,
+      "cols": 3,
+      "title": "Hai đốm sáng",
+      "difficulty": "Làm quen",
+      "description": "Bắt đầu từ ví dụ quen thuộc: một ô đen mang số 0.",
+      "board": [
+        "...",
+        ".0.",
+        "..."
+      ]
+    },
+    {
+      "id": "lightup-5",
+      "game": "lightup",
+      "rows": 5,
+      "cols": 5,
+      "title": "Góc nắng",
+      "difficulty": "Cơ bản",
+      "description": "Ô đen chặn sáng, những con số chỉ đường.",
+      "board": [
+        ".....",
+        "..2..",
+        "..1..",
+        ".111.",
+        "....0"
+      ],
+      "seed": 19
+    },
+    {
+      "id": "lightup-6",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "title": "Ánh sáng giao nhau",
+      "difficulty": "Thử thách",
+      "description": "Hai tia sáng được giao nhau, hai đèn thì không.",
+      "board": [
+        "00..20",
+        "0.0..1",
+        "....##",
+        "..#...",
+        "##....",
+        ".1..0."
+      ],
+      "seed": 31
+    },
+    {
+      "id": "lightup-7",
+      "game": "lightup",
+      "rows": 7,
+      "cols": 7,
+      "title": "Thắp sáng khu vườn",
+      "difficulty": "Mở rộng",
+      "description": "Kết hợp vùng sáng và các ràng buộc quanh ô đen.",
+      "board": [
+        "1.1....",
+        "..0....",
+        ".......",
+        ".1.2...",
+        "...1...",
+        "3....0.",
+        ".2....."
+      ],
+      "seed": 57
+    },
+    {
+      "id": "pipes-4-seed-101",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        4,
+        12,
+        3,
+        2,
+        8,
+        10,
+        12,
+        9,
+        10,
+        9,
+        9,
+        5,
+        9,
+        5,
+        14,
+        3
+      ],
+      "seed": 101
+    },
+    {
+      "id": "pipes-4-seed-102",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        2,
+        12,
+        4,
+        6,
+        8,
+        6,
+        6,
+        10,
+        10,
+        6,
+        3,
+        5,
+        12,
+        13,
+        5,
+        12
+      ],
+      "seed": 102
+    },
+    {
+      "id": "pipes-4-seed-103",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        4,
+        4,
+        14,
+        1,
+        12,
+        9,
+        9,
+        6,
+        8,
+        6,
+        12,
+        5,
+        6,
+        5,
+        13,
+        6
+      ],
+      "seed": 103
+    },
+    {
+      "id": "pipes-6-seed-101",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        8,
+        3,
+        3,
+        5,
+        5,
+        6,
+        4,
+        10,
+        8,
+        6,
+        6,
+        10,
+        5,
+        12,
+        12,
+        5,
+        5,
+        5,
+        5,
+        12,
+        9,
+        10,
+        6,
+        7,
+        7,
+        3,
+        3,
+        6,
+        3,
+        3,
+        9,
+        10,
+        3,
+        2,
+        11,
+        8
+      ],
+      "seed": 101
+    },
+    {
+      "id": "pipes-6-seed-102",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        1,
+        9,
+        4,
+        11,
+        9,
+        4,
+        8,
+        12,
+        6,
+        10,
+        9,
+        7,
+        5,
+        3,
+        12,
+        6,
+        6,
+        2,
+        10,
+        10,
+        9,
+        12,
+        9,
+        12,
+        10,
+        10,
+        5,
+        3,
+        6,
+        5,
+        9,
+        7,
+        3,
+        8,
+        13,
+        3
+      ],
+      "seed": 102
+    },
+    {
+      "id": "pipes-6-seed-103",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        8,
+        1,
+        13,
+        10,
+        10,
+        6,
+        6,
+        9,
+        9,
+        3,
+        6,
+        12,
+        1,
+        3,
+        12,
+        5,
+        10,
+        4,
+        5,
+        3,
+        6,
+        5,
+        10,
+        10,
+        11,
+        12,
+        9,
+        9,
+        6,
+        14,
+        3,
+        10,
+        6,
+        2,
+        5,
+        3
+      ],
+      "seed": 103
+    },
+    {
+      "id": "pipes-8-seed-101",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        8,
+        6,
+        8,
+        3,
+        10,
+        5,
+        10,
+        12,
+        4,
+        5,
+        12,
+        15,
+        10,
+        5,
+        1,
+        10,
+        10,
+        9,
+        9,
+        5,
+        12,
+        10,
+        10,
+        14,
+        5,
+        6,
+        6,
+        8,
+        5,
+        8,
+        9,
+        6,
+        7,
+        6,
+        12,
+        3,
+        10,
+        6,
+        13,
+        12,
+        5,
+        12,
+        13,
+        5,
+        6,
+        10,
+        12,
+        10,
+        10,
+        1,
+        5,
+        6,
+        10,
+        5,
+        3,
+        5,
+        12,
+        10,
+        3,
+        8,
+        10,
+        10,
+        5,
+        12
+      ],
+      "seed": 101
+    },
+    {
+      "id": "pipes-8-seed-102",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        2,
+        6,
+        8,
+        5,
+        5,
+        13,
+        10,
+        4,
+        8,
+        6,
+        9,
+        3,
+        9,
+        6,
+        5,
+        9,
+        5,
+        6,
+        3,
+        10,
+        5,
+        12,
+        10,
+        13,
+        10,
+        5,
+        3,
+        6,
+        5,
+        5,
+        3,
+        12,
+        10,
+        10,
+        14,
+        3,
+        6,
+        9,
+        9,
+        9,
+        11,
+        3,
+        2,
+        5,
+        6,
+        5,
+        5,
+        12,
+        6,
+        10,
+        3,
+        5,
+        9,
+        9,
+        12,
+        6,
+        4,
+        5,
+        11,
+        9,
+        1,
+        11,
+        3,
+        4
+      ],
+      "seed": 102
+    },
+    {
+      "id": "pipes-8-seed-103",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "tiles": [
+        2,
+        1,
+        11,
+        10,
+        9,
+        1,
+        10,
+        3,
+        12,
+        12,
+        6,
+        9,
+        6,
+        9,
+        3,
+        11,
+        4,
+        9,
+        12,
+        10,
+        3,
+        6,
+        5,
+        2,
+        5,
+        9,
+        6,
+        10,
+        3,
+        6,
+        12,
+        6,
+        14,
+        3,
+        9,
+        6,
+        4,
+        9,
+        3,
+        10,
+        5,
+        6,
+        13,
+        3,
+        7,
+        6,
+        9,
+        7,
+        5,
+        4,
+        10,
+        5,
+        1,
+        3,
+        5,
+        12,
+        12,
+        5,
+        3,
+        6,
+        13,
+        5,
+        10,
+        8
+      ],
+      "seed": 103
+    },
+    {
+      "id": "lightup-4-seed-101",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        ".1..",
+        "..#2",
+        "..1.",
+        "100."
+      ],
+      "seed": 101
+    },
+    {
+      "id": "lightup-4-seed-102",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        "2.2.",
+        "....",
+        "#...",
+        "...#"
+      ],
+      "seed": 102
+    },
+    {
+      "id": "lightup-4-seed-103",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        "....",
+        "11.2",
+        "...#",
+        "10.0"
+      ],
+      "seed": 103
+    },
+    {
+      "id": "lightup-6-seed-101",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        ".1....",
+        "##..3.",
+        "100...",
+        "...#..",
+        "#.....",
+        "....#."
+      ],
+      "seed": 101
+    },
+    {
+      "id": "lightup-6-seed-102",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        "0.1...",
+        "..2...",
+        "...1#.",
+        "....#.",
+        "1....1",
+        "......"
+      ],
+      "seed": 102
+    },
+    {
+      "id": "lightup-6-seed-103",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        "....0#",
+        ".2...0",
+        "#1.2#0",
+        "#.1...",
+        "......",
+        "......"
+      ],
+      "seed": 103
+    },
+    {
+      "id": "lightup-8-seed-101",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        ".0....10",
+        "..1.21#.",
+        ".....3..",
+        "1.......",
+        "..0...0.",
+        "2.1010#.",
+        "........",
+        "..#01..."
+      ],
+      "seed": 101
+    },
+    {
+      "id": "lightup-8-seed-102",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        "0.0.....",
+        "0......2",
+        "0.....3.",
+        "0....2..",
+        ".....01.",
+        "........",
+        "........",
+        "........"
+      ],
+      "seed": 102
+    },
+    {
+      "id": "lightup-8-seed-103",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "title": "Benchmark",
+      "difficulty": "Thực nghiệm",
+      "description": "Input có seed cố định.",
+      "board": [
+        "....01.1",
+        "...100.0",
+        "011.2...",
+        "........",
+        "....1...",
+        "....0..1",
+        ".#..1...",
+        "........"
+      ],
+      "seed": 103
+    }
+  ],
   "results": [
     {
       "level": "pipes-3",
+      "game": "pipes",
+      "rows": 3,
+      "cols": 3,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 0.49,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.253,
+      "min_ms": 0.25,
+      "max_ms": 0.278,
       "runs_ms": [
-        0.516,
-        0.49,
-        0.533,
-        0.462,
-        0.432
+        0.258,
+        0.253,
+        0.251,
+        0.278,
+        0.26,
+        0.25,
+        0.252
       ],
       "expanded": 10,
+      "generated": 11,
+      "pruned": 1,
       "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.258,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.253,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.251,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.278,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.26,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.25,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.252,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 7.52
+      "memory_solution_verified": true,
+      "memory_expanded": 10,
+      "peak_python_kib": 9.84
     },
     {
       "level": "pipes-3",
+      "game": "pipes",
+      "rows": 3,
+      "cols": 3,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 0.342,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.265,
+      "min_ms": 0.26,
+      "max_ms": 0.418,
       "runs_ms": [
-        0.359,
-        0.342,
-        0.377,
-        0.303,
-        0.305
+        0.265,
+        0.355,
+        0.418,
+        0.312,
+        0.263,
+        0.26,
+        0.264
       ],
       "expanded": 10,
+      "generated": 11,
+      "pruned": 1,
       "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.265,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.355,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.418,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.312,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.263,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.26,
+          "peak_kib": null
+        },
+        {
+          "expanded": 10,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.264,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 7.52
+      "memory_solution_verified": true,
+      "memory_expanded": 10,
+      "peak_python_kib": 9.73
     },
     {
       "level": "pipes-4",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.305,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.735,
+      "min_ms": 0.721,
+      "max_ms": 0.759,
       "runs_ms": [
-        1.305,
-        1.906,
-        1.241,
-        1.75,
-        1.176
+        0.743,
+        0.721,
+        0.759,
+        0.735,
+        0.729,
+        0.741,
+        0.727
       ],
       "expanded": 17,
+      "generated": 19,
+      "pruned": 2,
       "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.743,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.721,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.759,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.735,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.729,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.741,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.727,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 8.0
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 20.76
     },
     {
       "level": "pipes-4",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.545,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.754,
+      "min_ms": 0.745,
+      "max_ms": 0.841,
       "runs_ms": [
-        1.802,
-        1.545,
-        2.073,
-        1.273,
-        0.922
+        0.841,
+        0.754,
+        0.78,
+        0.748,
+        0.766,
+        0.747,
+        0.745
       ],
       "expanded": 17,
+      "generated": 19,
+      "pruned": 2,
       "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.841,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.754,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.78,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.748,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.766,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.747,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.745,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 8.0
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 20.8
     },
     {
       "level": "pipes-5",
+      "game": "pipes",
+      "rows": 5,
+      "cols": 5,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.586,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 1.885,
+      "min_ms": 1.866,
+      "max_ms": 1.981,
       "runs_ms": [
-        1.748,
-        2.92,
-        1.586,
-        1.507,
-        1.492
+        1.873,
+        1.946,
+        1.981,
+        1.882,
+        1.885,
+        1.886,
+        1.866
       ],
       "expanded": 28,
+      "generated": 29,
+      "pruned": 1,
       "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.873,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.946,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.981,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.882,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.885,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.886,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.866,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 18.62
+      "memory_solution_verified": true,
+      "memory_expanded": 28,
+      "peak_python_kib": 46.08
     },
     {
       "level": "pipes-5",
+      "game": "pipes",
+      "rows": 5,
+      "cols": 5,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.552,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 1.864,
+      "min_ms": 1.85,
+      "max_ms": 1.941,
       "runs_ms": [
-        1.545,
-        2.661,
-        1.705,
-        1.552,
-        1.534
+        1.864,
+        1.941,
+        1.86,
+        1.85,
+        1.86,
+        1.894,
+        1.888
       ],
       "expanded": 28,
+      "generated": 29,
+      "pruned": 1,
       "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.864,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.941,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.86,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.85,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.86,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.894,
+          "peak_kib": null
+        },
+        {
+          "expanded": 28,
+          "generated": 29,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 1.888,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 12.97
+      "memory_solution_verified": true,
+      "memory_expanded": 28,
+      "peak_python_kib": 46.16
     },
     {
       "level": "pipes-6",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 5.527,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.631,
+      "min_ms": 3.528,
+      "max_ms": 3.675,
       "runs_ms": [
-        5.527,
-        4.43,
-        4.018,
-        7.958,
-        8.653
+        3.631,
+        3.639,
+        3.654,
+        3.625,
+        3.675,
+        3.628,
+        3.528
       ],
       "expanded": 37,
+      "generated": 41,
+      "pruned": 4,
       "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.631,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.639,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.654,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.625,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.675,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.628,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.528,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 17.49
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 84.48
     },
     {
       "level": "pipes-6",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 5.464,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.853,
+      "min_ms": 3.774,
+      "max_ms": 3.914,
       "runs_ms": [
-        3.547,
-        3.142,
-        5.464,
-        6.925,
-        6.588
+        3.774,
+        3.853,
+        3.859,
+        3.822,
+        3.854,
+        3.833,
+        3.914
       ],
       "expanded": 37,
+      "generated": 41,
+      "pruned": 4,
       "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.774,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.853,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.859,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.822,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.854,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.833,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 41,
+          "pruned": 4,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.914,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 12.23
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 84.52
     },
     {
       "level": "lightup-3",
+      "game": "lightup",
+      "rows": 3,
+      "cols": 3,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 0.106,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.064,
+      "min_ms": 0.06,
+      "max_ms": 0.074,
       "runs_ms": [
-        0.106,
+        0.074,
         0.066,
         0.067,
-        0.116,
-        0.174
+        0.064,
+        0.062,
+        0.06,
+        0.06
       ],
       "expanded": 7,
+      "generated": 10,
+      "pruned": 2,
       "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.074,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.066,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.067,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.064,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.062,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.06,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 10,
+          "pruned": 2,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.06,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 3.41
+      "memory_solution_verified": true,
+      "memory_expanded": 7,
+      "peak_python_kib": 4.74
     },
     {
       "level": "lightup-3",
+      "game": "lightup",
+      "rows": 3,
+      "cols": 3,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 0.167,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.087,
+      "min_ms": 0.084,
+      "max_ms": 0.095,
       "runs_ms": [
-        0.189,
-        0.187,
-        0.166,
-        0.167,
-        0.165
+        0.09,
+        0.088,
+        0.086,
+        0.095,
+        0.087,
+        0.086,
+        0.084
       ],
       "expanded": 9,
+      "generated": 11,
+      "pruned": 1,
       "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.09,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.088,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.086,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.095,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.087,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.086,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 11,
+          "pruned": 1,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.084,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 3.48
+      "memory_solution_verified": true,
+      "memory_expanded": 9,
+      "peak_python_kib": 6.23
     },
     {
       "level": "lightup-5",
+      "game": "lightup",
+      "rows": 5,
+      "cols": 5,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.209,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.625,
+      "min_ms": 0.622,
+      "max_ms": 0.635,
       "runs_ms": [
-        1.209,
-        1.371,
-        1.301,
-        0.81,
-        1.128
+        0.631,
+        0.635,
+        0.625,
+        0.622,
+        0.622,
+        0.631,
+        0.622
       ],
       "expanded": 32,
+      "generated": 52,
+      "pruned": 17,
       "frontier_peak": 5,
+      "runs_metrics": [
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.631,
+          "peak_kib": null
+        },
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.635,
+          "peak_kib": null
+        },
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.625,
+          "peak_kib": null
+        },
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.622,
+          "peak_kib": null
+        },
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.622,
+          "peak_kib": null
+        },
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.631,
+          "peak_kib": null
+        },
+        {
+          "expanded": 32,
+          "generated": 52,
+          "pruned": 17,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.622,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 7.59
+      "memory_solution_verified": true,
+      "memory_expanded": 32,
+      "peak_python_kib": 14.82
     },
     {
       "level": "lightup-5",
+      "game": "lightup",
+      "rows": 5,
+      "cols": 5,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 0.776,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.78,
+      "min_ms": 0.768,
+      "max_ms": 0.782,
       "runs_ms": [
-        0.839,
-        1.112,
-        0.776,
-        0.74,
-        0.719
+        0.782,
+        0.771,
+        0.78,
+        0.78,
+        0.771,
+        0.768,
+        0.78
       ],
       "expanded": 35,
+      "generated": 50,
+      "pruned": 11,
       "frontier_peak": 5,
+      "runs_metrics": [
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.782,
+          "peak_kib": null
+        },
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.771,
+          "peak_kib": null
+        },
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.78,
+          "peak_kib": null
+        },
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.78,
+          "peak_kib": null
+        },
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.771,
+          "peak_kib": null
+        },
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.768,
+          "peak_kib": null
+        },
+        {
+          "expanded": 35,
+          "generated": 50,
+          "pruned": 11,
+          "frontier_peak": 5,
+          "elapsed_ms": 0.78,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 10.12
+      "memory_solution_verified": true,
+      "memory_expanded": 35,
+      "peak_python_kib": 18.55
     },
     {
       "level": "lightup-6",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 0.99,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.447,
+      "min_ms": 0.442,
+      "max_ms": 0.452,
       "runs_ms": [
-        0.549,
-        0.479,
-        1.34,
-        1.161,
-        0.99
+        0.451,
+        0.451,
+        0.452,
+        0.447,
+        0.442,
+        0.442,
+        0.444
       ],
       "expanded": 20,
+      "generated": 28,
+      "pruned": 7,
       "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.451,
+          "peak_kib": null
+        },
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.451,
+          "peak_kib": null
+        },
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.452,
+          "peak_kib": null
+        },
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.447,
+          "peak_kib": null
+        },
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.442,
+          "peak_kib": null
+        },
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.442,
+          "peak_kib": null
+        },
+        {
+          "expanded": 20,
+          "generated": 28,
+          "pruned": 7,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.444,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 7.92
+      "memory_solution_verified": true,
+      "memory_expanded": 20,
+      "peak_python_kib": 12.41
     },
     {
       "level": "lightup-6",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.333,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.713,
+      "min_ms": 0.704,
+      "max_ms": 0.735,
       "runs_ms": [
-        1.546,
-        1.333,
-        1.153,
-        1.21,
-        1.658
+        0.735,
+        0.712,
+        0.716,
+        0.704,
+        0.713,
+        0.724,
+        0.71
       ],
       "expanded": 26,
+      "generated": 37,
+      "pruned": 11,
       "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.735,
+          "peak_kib": null
+        },
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.712,
+          "peak_kib": null
+        },
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.716,
+          "peak_kib": null
+        },
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.704,
+          "peak_kib": null
+        },
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.713,
+          "peak_kib": null
+        },
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.724,
+          "peak_kib": null
+        },
+        {
+          "expanded": 26,
+          "generated": 37,
+          "pruned": 11,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.71,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 9.06
+      "memory_solution_verified": true,
+      "memory_expanded": 26,
+      "peak_python_kib": 14.36
     },
     {
       "level": "lightup-7",
+      "game": "lightup",
+      "rows": 7,
+      "cols": 7,
       "algorithm": "dfs",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 1.465,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 1.629,
+      "min_ms": 1.603,
+      "max_ms": 1.737,
       "runs_ms": [
-        1.462,
-        2.409,
-        1.465,
-        1.453,
-        1.466
+        1.737,
+        1.655,
+        1.65,
+        1.629,
+        1.616,
+        1.603,
+        1.603
       ],
       "expanded": 51,
+      "generated": 75,
+      "pruned": 18,
       "frontier_peak": 9,
+      "runs_metrics": [
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.737,
+          "peak_kib": null
+        },
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.655,
+          "peak_kib": null
+        },
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.65,
+          "peak_kib": null
+        },
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.629,
+          "peak_kib": null
+        },
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.616,
+          "peak_kib": null
+        },
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.603,
+          "peak_kib": null
+        },
+        {
+          "expanded": 51,
+          "generated": 75,
+          "pruned": 18,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.603,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 27.27
+      "memory_solution_verified": true,
+      "memory_expanded": 51,
+      "peak_python_kib": 35.1
     },
     {
       "level": "lightup-7",
+      "game": "lightup",
+      "rows": 7,
+      "cols": 7,
       "algorithm": "greedy",
       "statuses": [
         "solved",
         "solved",
         "solved",
         "solved",
+        "solved",
+        "solved",
         "solved"
       ],
-      "median_ms": 9.619,
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 4.711,
+      "min_ms": 4.642,
+      "max_ms": 5.228,
       "runs_ms": [
-        10.175,
-        9.619,
-        9.544,
-        7.21,
-        10.748
+        4.682,
+        5.228,
+        4.813,
+        4.642,
+        4.711,
+        4.684,
+        4.723
       ],
       "expanded": 142,
+      "generated": 196,
+      "pruned": 48,
       "frontier_peak": 7,
+      "runs_metrics": [
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 4.682,
+          "peak_kib": null
+        },
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 5.228,
+          "peak_kib": null
+        },
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 4.813,
+          "peak_kib": null
+        },
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 4.642,
+          "peak_kib": null
+        },
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 4.711,
+          "peak_kib": null
+        },
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 4.684,
+          "peak_kib": null
+        },
+        {
+          "expanded": 142,
+          "generated": 196,
+          "pruned": 48,
+          "frontier_peak": 7,
+          "elapsed_ms": 4.723,
+          "peak_kib": null
+        }
+      ],
       "memory_status": "solved",
-      "peak_python_kib": 45.49
+      "memory_solution_verified": true,
+      "memory_expanded": 142,
+      "peak_python_kib": 61.02
+    },
+    {
+      "level": "pipes-4-seed-101",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.648,
+      "min_ms": 0.636,
+      "max_ms": 0.702,
+      "runs_ms": [
+        0.661,
+        0.702,
+        0.641,
+        0.648,
+        0.636,
+        0.653,
+        0.643
+      ],
+      "expanded": 17,
+      "generated": 19,
+      "pruned": 2,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.661,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.702,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.641,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.648,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.636,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.653,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.643,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 21.57
+    },
+    {
+      "level": "pipes-4-seed-101",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.674,
+      "min_ms": 0.664,
+      "max_ms": 0.681,
+      "runs_ms": [
+        0.677,
+        0.674,
+        0.675,
+        0.667,
+        0.681,
+        0.664,
+        0.667
+      ],
+      "expanded": 17,
+      "generated": 19,
+      "pruned": 2,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.677,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.674,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.675,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.667,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.681,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.664,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 19,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.667,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 21.61
+    },
+    {
+      "level": "pipes-4-seed-102",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.65,
+      "min_ms": 0.638,
+      "max_ms": 0.827,
+      "runs_ms": [
+        0.659,
+        0.644,
+        0.65,
+        0.645,
+        0.827,
+        0.638,
+        0.706
+      ],
+      "expanded": 17,
+      "generated": 20,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.659,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.644,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.65,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.645,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.827,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.638,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.706,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 21.89
+    },
+    {
+      "level": "pipes-4-seed-102",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.668,
+      "min_ms": 0.664,
+      "max_ms": 0.682,
+      "runs_ms": [
+        0.668,
+        0.666,
+        0.682,
+        0.671,
+        0.678,
+        0.664,
+        0.667
+      ],
+      "expanded": 17,
+      "generated": 20,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.668,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.666,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.682,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.671,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.678,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.664,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.667,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 21.93
+    },
+    {
+      "level": "pipes-4-seed-103",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.657,
+      "min_ms": 0.645,
+      "max_ms": 0.679,
+      "runs_ms": [
+        0.679,
+        0.657,
+        0.666,
+        0.647,
+        0.658,
+        0.645,
+        0.645
+      ],
+      "expanded": 17,
+      "generated": 20,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.679,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.657,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.666,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.647,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.658,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.645,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.645,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 22.31
+    },
+    {
+      "level": "pipes-4-seed-103",
+      "game": "pipes",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.683,
+      "min_ms": 0.671,
+      "max_ms": 0.771,
+      "runs_ms": [
+        0.771,
+        0.693,
+        0.697,
+        0.679,
+        0.68,
+        0.671,
+        0.683
+      ],
+      "expanded": 17,
+      "generated": 20,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.771,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.693,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.697,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.679,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.68,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.671,
+          "peak_kib": null
+        },
+        {
+          "expanded": 17,
+          "generated": 20,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.683,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 17,
+      "peak_python_kib": 22.35
+    },
+    {
+      "level": "pipes-6-seed-101",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.018,
+      "min_ms": 2.963,
+      "max_ms": 3.144,
+      "runs_ms": [
+        2.963,
+        3.006,
+        3.009,
+        3.018,
+        3.038,
+        3.144,
+        3.028
+      ],
+      "expanded": 37,
+      "generated": 39,
+      "pruned": 2,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.963,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.006,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.009,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.018,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.038,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.144,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.028,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 83.05
+    },
+    {
+      "level": "pipes-6-seed-101",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.096,
+      "min_ms": 3.061,
+      "max_ms": 3.176,
+      "runs_ms": [
+        3.083,
+        3.116,
+        3.096,
+        3.061,
+        3.176,
+        3.082,
+        3.113
+      ],
+      "expanded": 37,
+      "generated": 39,
+      "pruned": 2,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.083,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.116,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.096,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.061,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.176,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.082,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 39,
+          "pruned": 2,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.113,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 83.09
+    },
+    {
+      "level": "pipes-6-seed-102",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 2.952,
+      "min_ms": 2.917,
+      "max_ms": 3.005,
+      "runs_ms": [
+        2.924,
+        2.952,
+        2.917,
+        2.99,
+        2.939,
+        2.98,
+        3.005
+      ],
+      "expanded": 37,
+      "generated": 40,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.924,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.952,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.917,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.99,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.939,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.98,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.005,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 83.2
+    },
+    {
+      "level": "pipes-6-seed-102",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.087,
+      "min_ms": 3.057,
+      "max_ms": 3.118,
+      "runs_ms": [
+        3.087,
+        3.088,
+        3.061,
+        3.098,
+        3.06,
+        3.118,
+        3.057
+      ],
+      "expanded": 37,
+      "generated": 40,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.087,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.088,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.061,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.098,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.06,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.118,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.057,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 83.23
+    },
+    {
+      "level": "pipes-6-seed-103",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.023,
+      "min_ms": 2.983,
+      "max_ms": 3.075,
+      "runs_ms": [
+        3.002,
+        3.062,
+        3.023,
+        3.053,
+        2.989,
+        3.075,
+        2.983
+      ],
+      "expanded": 37,
+      "generated": 40,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.002,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.062,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.023,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.053,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.989,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.075,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 2.983,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 83.45
+    },
+    {
+      "level": "pipes-6-seed-103",
+      "game": "pipes",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 3.306,
+      "min_ms": 3.147,
+      "max_ms": 3.557,
+      "runs_ms": [
+        3.557,
+        3.357,
+        3.199,
+        3.147,
+        3.282,
+        3.306,
+        3.348
+      ],
+      "expanded": 37,
+      "generated": 40,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.557,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.357,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.199,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.147,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.282,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.306,
+          "peak_kib": null
+        },
+        {
+          "expanded": 37,
+          "generated": 40,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 3.348,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 37,
+      "peak_python_kib": 83.48
+    },
+    {
+      "level": "pipes-8-seed-101",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 10.332,
+      "min_ms": 10.272,
+      "max_ms": 10.544,
+      "runs_ms": [
+        10.334,
+        10.332,
+        10.272,
+        10.544,
+        10.298,
+        10.287,
+        10.503
+      ],
+      "expanded": 67,
+      "generated": 73,
+      "pruned": 6,
+      "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.334,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.332,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.272,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.544,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.298,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.287,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.503,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 67,
+      "peak_python_kib": 195.39
+    },
+    {
+      "level": "pipes-8-seed-101",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 10.561,
+      "min_ms": 10.413,
+      "max_ms": 12.426,
+      "runs_ms": [
+        10.625,
+        10.561,
+        10.73,
+        12.426,
+        10.458,
+        10.414,
+        10.413
+      ],
+      "expanded": 67,
+      "generated": 73,
+      "pruned": 6,
+      "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.625,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.561,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.73,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 12.426,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.458,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.414,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 73,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 10.413,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 67,
+      "peak_python_kib": 195.45
+    },
+    {
+      "level": "pipes-8-seed-102",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 9.514,
+      "min_ms": 9.257,
+      "max_ms": 9.544,
+      "runs_ms": [
+        9.5,
+        9.257,
+        9.378,
+        9.544,
+        9.538,
+        9.514,
+        9.536
+      ],
+      "expanded": 65,
+      "generated": 68,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.5,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.257,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.378,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.544,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.538,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.514,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 9.536,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 65,
+      "peak_python_kib": 209.72
+    },
+    {
+      "level": "pipes-8-seed-102",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 11.19,
+      "min_ms": 10.95,
+      "max_ms": 11.873,
+      "runs_ms": [
+        11.088,
+        10.994,
+        10.95,
+        11.19,
+        11.597,
+        11.765,
+        11.873
+      ],
+      "expanded": 65,
+      "generated": 68,
+      "pruned": 3,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 11.088,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 10.994,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 10.95,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 11.19,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 11.597,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 11.765,
+          "peak_kib": null
+        },
+        {
+          "expanded": 65,
+          "generated": 68,
+          "pruned": 3,
+          "frontier_peak": 1,
+          "elapsed_ms": 11.873,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 65,
+      "peak_python_kib": 209.76
+    },
+    {
+      "level": "pipes-8-seed-103",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 12.033,
+      "min_ms": 11.436,
+      "max_ms": 12.468,
+      "runs_ms": [
+        12.034,
+        12.152,
+        12.468,
+        12.033,
+        11.818,
+        11.436,
+        11.611
+      ],
+      "expanded": 67,
+      "generated": 75,
+      "pruned": 6,
+      "frontier_peak": 4,
+      "runs_metrics": [
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 12.034,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 12.152,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 12.468,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 12.033,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 11.818,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 11.436,
+          "peak_kib": null
+        },
+        {
+          "expanded": 67,
+          "generated": 75,
+          "pruned": 6,
+          "frontier_peak": 4,
+          "elapsed_ms": 11.611,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 67,
+      "peak_python_kib": 213.34
+    },
+    {
+      "level": "pipes-8-seed-103",
+      "game": "pipes",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 13.0,
+      "min_ms": 12.833,
+      "max_ms": 13.207,
+      "runs_ms": [
+        13.0,
+        12.884,
+        12.919,
+        12.833,
+        13.06,
+        13.207,
+        13.089
+      ],
+      "expanded": 69,
+      "generated": 77,
+      "pruned": 7,
+      "frontier_peak": 3,
+      "runs_metrics": [
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 13.0,
+          "peak_kib": null
+        },
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 12.884,
+          "peak_kib": null
+        },
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 12.919,
+          "peak_kib": null
+        },
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 12.833,
+          "peak_kib": null
+        },
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 13.06,
+          "peak_kib": null
+        },
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 13.207,
+          "peak_kib": null
+        },
+        {
+          "expanded": 69,
+          "generated": 77,
+          "pruned": 7,
+          "frontier_peak": 3,
+          "elapsed_ms": 13.089,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 69,
+      "peak_python_kib": 210.48
+    },
+    {
+      "level": "lightup-4-seed-101",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.152,
+      "min_ms": 0.146,
+      "max_ms": 0.157,
+      "runs_ms": [
+        0.157,
+        0.155,
+        0.152,
+        0.157,
+        0.148,
+        0.149,
+        0.146
+      ],
+      "expanded": 9,
+      "generated": 16,
+      "pruned": 7,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.157,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.155,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.152,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.157,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.148,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.149,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.146,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 9,
+      "peak_python_kib": 5.39
+    },
+    {
+      "level": "lightup-4-seed-101",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.184,
+      "min_ms": 0.173,
+      "max_ms": 0.201,
+      "runs_ms": [
+        0.186,
+        0.184,
+        0.189,
+        0.201,
+        0.176,
+        0.173,
+        0.174
+      ],
+      "expanded": 9,
+      "generated": 16,
+      "pruned": 7,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.186,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.184,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.189,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.201,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.176,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.173,
+          "peak_kib": null
+        },
+        {
+          "expanded": 9,
+          "generated": 16,
+          "pruned": 7,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.174,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 9,
+      "peak_python_kib": 5.62
+    },
+    {
+      "level": "lightup-4-seed-102",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.162,
+      "min_ms": 0.157,
+      "max_ms": 0.174,
+      "runs_ms": [
+        0.174,
+        0.166,
+        0.162,
+        0.162,
+        0.159,
+        0.159,
+        0.157
+      ],
+      "expanded": 14,
+      "generated": 21,
+      "pruned": 6,
+      "frontier_peak": 2,
+      "runs_metrics": [
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.174,
+          "peak_kib": null
+        },
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.166,
+          "peak_kib": null
+        },
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.162,
+          "peak_kib": null
+        },
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.162,
+          "peak_kib": null
+        },
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.159,
+          "peak_kib": null
+        },
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.159,
+          "peak_kib": null
+        },
+        {
+          "expanded": 14,
+          "generated": 21,
+          "pruned": 6,
+          "frontier_peak": 2,
+          "elapsed_ms": 0.157,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 14,
+      "peak_python_kib": 7.34
+    },
+    {
+      "level": "lightup-4-seed-102",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.161,
+      "min_ms": 0.158,
+      "max_ms": 0.166,
+      "runs_ms": [
+        0.166,
+        0.161,
+        0.164,
+        0.161,
+        0.16,
+        0.16,
+        0.158
+      ],
+      "expanded": 11,
+      "generated": 16,
+      "pruned": 3,
+      "frontier_peak": 3,
+      "runs_metrics": [
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.166,
+          "peak_kib": null
+        },
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.161,
+          "peak_kib": null
+        },
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.164,
+          "peak_kib": null
+        },
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.161,
+          "peak_kib": null
+        },
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.16,
+          "peak_kib": null
+        },
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.16,
+          "peak_kib": null
+        },
+        {
+          "expanded": 11,
+          "generated": 16,
+          "pruned": 3,
+          "frontier_peak": 3,
+          "elapsed_ms": 0.158,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 11,
+      "peak_python_kib": 8.69
+    },
+    {
+      "level": "lightup-4-seed-103",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.119,
+      "min_ms": 0.117,
+      "max_ms": 0.126,
+      "runs_ms": [
+        0.126,
+        0.125,
+        0.121,
+        0.119,
+        0.119,
+        0.119,
+        0.117
+      ],
+      "expanded": 7,
+      "generated": 13,
+      "pruned": 6,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.126,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.125,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.121,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.119,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.119,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.119,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.117,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 7,
+      "peak_python_kib": 5.24
+    },
+    {
+      "level": "lightup-4-seed-103",
+      "game": "lightup",
+      "rows": 4,
+      "cols": 4,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.142,
+      "min_ms": 0.139,
+      "max_ms": 0.153,
+      "runs_ms": [
+        0.153,
+        0.144,
+        0.139,
+        0.143,
+        0.141,
+        0.142,
+        0.139
+      ],
+      "expanded": 7,
+      "generated": 13,
+      "pruned": 6,
+      "frontier_peak": 1,
+      "runs_metrics": [
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.153,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.144,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.139,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.143,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.141,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.142,
+          "peak_kib": null
+        },
+        {
+          "expanded": 7,
+          "generated": 13,
+          "pruned": 6,
+          "frontier_peak": 1,
+          "elapsed_ms": 0.139,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 7,
+      "peak_python_kib": 5.49
+    },
+    {
+      "level": "lightup-6-seed-101",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.686,
+      "min_ms": 0.677,
+      "max_ms": 0.792,
+      "runs_ms": [
+        0.771,
+        0.677,
+        0.792,
+        0.686,
+        0.703,
+        0.686,
+        0.686
+      ],
+      "expanded": 29,
+      "generated": 48,
+      "pruned": 11,
+      "frontier_peak": 9,
+      "runs_metrics": [
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.771,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.677,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.792,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.686,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.703,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.686,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 48,
+          "pruned": 11,
+          "frontier_peak": 9,
+          "elapsed_ms": 0.686,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 29,
+      "peak_python_kib": 19.15
+    },
+    {
+      "level": "lightup-6-seed-101",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.608,
+      "min_ms": 0.596,
+      "max_ms": 0.634,
+      "runs_ms": [
+        0.608,
+        0.617,
+        0.634,
+        0.601,
+        0.616,
+        0.602,
+        0.596
+      ],
+      "expanded": 23,
+      "generated": 32,
+      "pruned": 4,
+      "frontier_peak": 6,
+      "runs_metrics": [
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.608,
+          "peak_kib": null
+        },
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.617,
+          "peak_kib": null
+        },
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.634,
+          "peak_kib": null
+        },
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.601,
+          "peak_kib": null
+        },
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.616,
+          "peak_kib": null
+        },
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.602,
+          "peak_kib": null
+        },
+        {
+          "expanded": 23,
+          "generated": 32,
+          "pruned": 4,
+          "frontier_peak": 6,
+          "elapsed_ms": 0.596,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 23,
+      "peak_python_kib": 19.86
+    },
+    {
+      "level": "lightup-6-seed-102",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.683,
+      "min_ms": 0.672,
+      "max_ms": 0.788,
+      "runs_ms": [
+        0.676,
+        0.727,
+        0.672,
+        0.788,
+        0.696,
+        0.683,
+        0.682
+      ],
+      "expanded": 31,
+      "generated": 42,
+      "pruned": 9,
+      "frontier_peak": 4,
+      "runs_metrics": [
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.676,
+          "peak_kib": null
+        },
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.727,
+          "peak_kib": null
+        },
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.672,
+          "peak_kib": null
+        },
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.788,
+          "peak_kib": null
+        },
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.696,
+          "peak_kib": null
+        },
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.683,
+          "peak_kib": null
+        },
+        {
+          "expanded": 31,
+          "generated": 42,
+          "pruned": 9,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.682,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 31,
+      "peak_python_kib": 15.56
+    },
+    {
+      "level": "lightup-6-seed-102",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.802,
+      "min_ms": 0.777,
+      "max_ms": 0.836,
+      "runs_ms": [
+        0.836,
+        0.803,
+        0.794,
+        0.802,
+        0.811,
+        0.798,
+        0.777
+      ],
+      "expanded": 29,
+      "generated": 39,
+      "pruned": 7,
+      "frontier_peak": 4,
+      "runs_metrics": [
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.836,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.803,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.794,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.802,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.811,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.798,
+          "peak_kib": null
+        },
+        {
+          "expanded": 29,
+          "generated": 39,
+          "pruned": 7,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.777,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 29,
+      "peak_python_kib": 18.84
+    },
+    {
+      "level": "lightup-6-seed-103",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 1.397,
+      "min_ms": 1.378,
+      "max_ms": 1.411,
+      "runs_ms": [
+        1.387,
+        1.408,
+        1.402,
+        1.378,
+        1.385,
+        1.397,
+        1.411
+      ],
+      "expanded": 56,
+      "generated": 86,
+      "pruned": 27,
+      "frontier_peak": 7,
+      "runs_metrics": [
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.387,
+          "peak_kib": null
+        },
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.408,
+          "peak_kib": null
+        },
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.402,
+          "peak_kib": null
+        },
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.378,
+          "peak_kib": null
+        },
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.385,
+          "peak_kib": null
+        },
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.397,
+          "peak_kib": null
+        },
+        {
+          "expanded": 56,
+          "generated": 86,
+          "pruned": 27,
+          "frontier_peak": 7,
+          "elapsed_ms": 1.411,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 56,
+      "peak_python_kib": 21.94
+    },
+    {
+      "level": "lightup-6-seed-103",
+      "game": "lightup",
+      "rows": 6,
+      "cols": 6,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 0.62,
+      "min_ms": 0.606,
+      "max_ms": 0.629,
+      "runs_ms": [
+        0.626,
+        0.62,
+        0.612,
+        0.606,
+        0.629,
+        0.622,
+        0.614
+      ],
+      "expanded": 22,
+      "generated": 30,
+      "pruned": 5,
+      "frontier_peak": 4,
+      "runs_metrics": [
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.626,
+          "peak_kib": null
+        },
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.62,
+          "peak_kib": null
+        },
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.612,
+          "peak_kib": null
+        },
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.606,
+          "peak_kib": null
+        },
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.629,
+          "peak_kib": null
+        },
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.622,
+          "peak_kib": null
+        },
+        {
+          "expanded": 22,
+          "generated": 30,
+          "pruned": 5,
+          "frontier_peak": 4,
+          "elapsed_ms": 0.614,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 22,
+      "peak_python_kib": 17.55
+    },
+    {
+      "level": "lightup-8-seed-101",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 2.197,
+      "min_ms": 2.18,
+      "max_ms": 2.223,
+      "runs_ms": [
+        2.197,
+        2.197,
+        2.192,
+        2.223,
+        2.201,
+        2.18,
+        2.187
+      ],
+      "expanded": 52,
+      "generated": 74,
+      "pruned": 21,
+      "frontier_peak": 3,
+      "runs_metrics": [
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.197,
+          "peak_kib": null
+        },
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.197,
+          "peak_kib": null
+        },
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.192,
+          "peak_kib": null
+        },
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.223,
+          "peak_kib": null
+        },
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.201,
+          "peak_kib": null
+        },
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.18,
+          "peak_kib": null
+        },
+        {
+          "expanded": 52,
+          "generated": 74,
+          "pruned": 21,
+          "frontier_peak": 3,
+          "elapsed_ms": 2.187,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 52,
+      "peak_python_kib": 21.59
+    },
+    {
+      "level": "lightup-8-seed-101",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 2.221,
+      "min_ms": 2.153,
+      "max_ms": 2.249,
+      "runs_ms": [
+        2.249,
+        2.221,
+        2.236,
+        2.247,
+        2.153,
+        2.158,
+        2.154
+      ],
+      "expanded": 44,
+      "generated": 60,
+      "pruned": 13,
+      "frontier_peak": 4,
+      "runs_metrics": [
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.249,
+          "peak_kib": null
+        },
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.221,
+          "peak_kib": null
+        },
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.236,
+          "peak_kib": null
+        },
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.247,
+          "peak_kib": null
+        },
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.153,
+          "peak_kib": null
+        },
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.158,
+          "peak_kib": null
+        },
+        {
+          "expanded": 44,
+          "generated": 60,
+          "pruned": 13,
+          "frontier_peak": 4,
+          "elapsed_ms": 2.154,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 44,
+      "peak_python_kib": 26.36
+    },
+    {
+      "level": "lightup-8-seed-102",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 47.455,
+      "min_ms": 47.027,
+      "max_ms": 52.34,
+      "runs_ms": [
+        52.34,
+        50.005,
+        47.094,
+        47.455,
+        47.027,
+        47.272,
+        49.736
+      ],
+      "expanded": 1584,
+      "generated": 2144,
+      "pruned": 547,
+      "frontier_peak": 24,
+      "runs_metrics": [
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 52.34,
+          "peak_kib": null
+        },
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 50.005,
+          "peak_kib": null
+        },
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 47.094,
+          "peak_kib": null
+        },
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 47.455,
+          "peak_kib": null
+        },
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 47.027,
+          "peak_kib": null
+        },
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 47.272,
+          "peak_kib": null
+        },
+        {
+          "expanded": 1584,
+          "generated": 2144,
+          "pruned": 547,
+          "frontier_peak": 24,
+          "elapsed_ms": 49.736,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 1584,
+      "peak_python_kib": 366.38
+    },
+    {
+      "level": "lightup-8-seed-102",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 2.577,
+      "min_ms": 2.535,
+      "max_ms": 2.615,
+      "runs_ms": [
+        2.577,
+        2.615,
+        2.535,
+        2.58,
+        2.552,
+        2.587,
+        2.574
+      ],
+      "expanded": 68,
+      "generated": 89,
+      "pruned": 15,
+      "frontier_peak": 7,
+      "runs_metrics": [
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.577,
+          "peak_kib": null
+        },
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.615,
+          "peak_kib": null
+        },
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.535,
+          "peak_kib": null
+        },
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.58,
+          "peak_kib": null
+        },
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.552,
+          "peak_kib": null
+        },
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.587,
+          "peak_kib": null
+        },
+        {
+          "expanded": 68,
+          "generated": 89,
+          "pruned": 15,
+          "frontier_peak": 7,
+          "elapsed_ms": 2.574,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 68,
+      "peak_python_kib": 38.19
+    },
+    {
+      "level": "lightup-8-seed-103",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "dfs",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 1.881,
+      "min_ms": 1.869,
+      "max_ms": 1.929,
+      "runs_ms": [
+        1.877,
+        1.902,
+        1.929,
+        1.881,
+        1.878,
+        1.912,
+        1.869
+      ],
+      "expanded": 53,
+      "generated": 74,
+      "pruned": 15,
+      "frontier_peak": 9,
+      "runs_metrics": [
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.877,
+          "peak_kib": null
+        },
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.902,
+          "peak_kib": null
+        },
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.929,
+          "peak_kib": null
+        },
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.881,
+          "peak_kib": null
+        },
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.878,
+          "peak_kib": null
+        },
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.912,
+          "peak_kib": null
+        },
+        {
+          "expanded": 53,
+          "generated": 74,
+          "pruned": 15,
+          "frontier_peak": 9,
+          "elapsed_ms": 1.869,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 53,
+      "peak_python_kib": 31.78
+    },
+    {
+      "level": "lightup-8-seed-103",
+      "game": "lightup",
+      "rows": 8,
+      "cols": 8,
+      "algorithm": "greedy",
+      "statuses": [
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved",
+        "solved"
+      ],
+      "solved_runs": 7,
+      "solutions_verified": true,
+      "median_ms": 1.744,
+      "min_ms": 1.731,
+      "max_ms": 1.804,
+      "runs_ms": [
+        1.791,
+        1.742,
+        1.804,
+        1.744,
+        1.741,
+        1.731,
+        1.776
+      ],
+      "expanded": 43,
+      "generated": 54,
+      "pruned": 4,
+      "frontier_peak": 8,
+      "runs_metrics": [
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.791,
+          "peak_kib": null
+        },
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.742,
+          "peak_kib": null
+        },
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.804,
+          "peak_kib": null
+        },
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.744,
+          "peak_kib": null
+        },
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.741,
+          "peak_kib": null
+        },
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.731,
+          "peak_kib": null
+        },
+        {
+          "expanded": 43,
+          "generated": 54,
+          "pruned": 4,
+          "frontier_peak": 8,
+          "elapsed_ms": 1.776,
+          "peak_kib": null
+        }
+      ],
+      "memory_status": "solved",
+      "memory_solution_verified": true,
+      "memory_expanded": 43,
+      "peak_python_kib": 31.41
     }
   ]
 }
