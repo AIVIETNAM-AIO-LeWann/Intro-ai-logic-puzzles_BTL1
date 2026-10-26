@@ -78,7 +78,8 @@ export function drawBoard(container, level, state, { hintCell = -1, demo = false
       if (fixed.has(i)) cell.classList.add('touched');
       if (demo && !value) cell.classList.add('trace-empty');
       const names = [[1, 'trên'], [2, 'phải'], [4, 'dưới'], [8, 'trái']].filter(([bit]) => value & bit).map(([, name]) => name);
-      label += `: ống nối ${names.join(', ')}${fixed.has(i) ? ', đã chỉnh' : ''}. Nhấn để xoay.`;
+      label += demo && !value ? ': chưa gán hướng; ống mờ là hướng trên bảng chơi.'
+        : `: ống nối ${names.join(', ')}${fixed.has(i) ? ', đã chỉnh' : ''}.${demo ? '' : ' Nhấn để xoay; Shift + Enter xoay ngược.'}`;
     } else {
       const value = level.board[r][c];
       if (value !== '.') {

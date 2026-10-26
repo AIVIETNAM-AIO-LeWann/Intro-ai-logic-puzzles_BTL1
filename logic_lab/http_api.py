@@ -43,8 +43,16 @@ def route(method, path, body=b"", content_type="", origin=None, host=""):
         return response(404, {"error": "Không tìm thấy trang."})
     if method != "POST":
         return response(405, {"error": "Phương thức không được hỗ trợ."})
-    if origin and (urlparse(origin).scheme not in ("http", "https") or urlparse(origin).netloc != host):
-        return response(403, {"error": "Nguồn yêu cầu không hợp lệ."})
+    if origin:
+        try:
+            parsed = urlparse(origin)
+            valid_origin = (parsed.scheme in ("http", "https") and parsed.netloc == host
+                            and not parsed.path and not parsed.params
+                            and not parsed.query and not parsed.fragment)
+        except ValueError:
+            valid_origin = False
+        if not valid_origin:
+            return response(403, {"error": "Nguồn yêu cầu không hợp lệ."})
     if content_type.split(";")[0].strip() != "application/json":
         return response(415, {"error": "Yêu cầu phải dùng JSON."})
     if not body or len(body) > 32768:
@@ -62,5 +70,7 @@ def route(method, path, body=b"", content_type="", origin=None, host=""):
             return response(200, result)
         finally:
             SEARCH_SLOTS.release()
+    except RecursionError:
+        return response(400, {"error": "JSON lồng nhau quá sâu."})
     except (ValueError, TypeError, KeyError) as exc:
         return response(400, {"error": str(exc)})

@@ -2,6 +2,7 @@
 from dataclasses import dataclass, asdict
 import heapq
 import itertools
+import math
 import time
 import tracemalloc
 
@@ -11,7 +12,7 @@ class Metrics:
     expanded: int = 0
     generated: int = 1
     pruned: int = 0
-    frontier_peak: int = 1
+    frontier_peak: int = 0
     elapsed_ms: float = 0
     peak_kib: float | None = None
 
@@ -27,6 +28,15 @@ def search(problem, algorithm="greedy", timeout=4.0, max_nodes=100000,
     """
     if algorithm not in ("dfs", "greedy"):
         raise ValueError("Thuật toán phải là dfs hoặc greedy.")
+    if (isinstance(timeout, bool) or not isinstance(timeout, (int, float))
+            or not math.isfinite(timeout) or timeout < 0):
+        raise ValueError("timeout phải là số hữu hạn không âm.")
+    if type(max_nodes) is not int or max_nodes < 0:
+        raise ValueError("max_nodes phải là số nguyên không âm.")
+    if type(trace_limit) is not int or trace_limit < 0:
+        raise ValueError("trace_limit phải là số nguyên không âm.")
+    if measure_memory and tracemalloc.is_tracing():
+        raise ValueError("Đo bộ nhớ cần một phiên tracemalloc riêng.")
     started = time.perf_counter()
     if measure_memory:
         tracemalloc.start()
@@ -42,6 +52,7 @@ def search(problem, algorithm="greedy", timeout=4.0, max_nodes=100000,
         else:
             heapq.heappush(frontier, (problem.heuristic(state, domains),
                                      next(sequence), state, domains))
+        metrics.frontier_peak = max(metrics.frontier_peak, len(frontier))
 
     try:
         root = problem.initial
@@ -78,7 +89,6 @@ def search(problem, algorithm="greedy", timeout=4.0, max_nodes=100000,
                     metrics.pruned += 1
                 else:
                     push(child, child_domains)
-            metrics.frontier_peak = max(metrics.frontier_peak, len(frontier))
     finally:
         metrics.elapsed_ms = round((time.perf_counter() - started) * 1000, 3)
         if measure_memory:

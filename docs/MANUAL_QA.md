@@ -1,6 +1,6 @@
 # Checklist kiểm tra giao diện
 
-Đây là checklist để chạy trên trình duyệt thật. Không xem danh sách này là xác nhận đã kiểm tra trực quan: phiên phát triển chưa có trình duyệt kết nối với công cụ điều khiển.
+Đây là checklist để kiểm tra lại trên trình duyệt thật. Kết quả Chromium ngày 25/10/2026 được ghi trong [QA_RESULTS.md](QA_RESULTS.md); những mục trong checklist không tự động được coi là đã qua trên mọi trình duyệt hoặc thiết bị.
 
 ## Pipes
 
@@ -28,7 +28,7 @@
 - Chuyển qua lại hai chế độ demo với DFS và Greedy. Mỗi lần đổi dừng phát cũ, đặt lại thanh trượt và hiển thị đúng phạm vi đang giải.
 
 - Giải xong cả Pipes và Light Up: hộp thoại Hoàn thành hiện sau khi API xác nhận, đúng nước đi/thời gian; dấu tick trên danh sách màn được lưu.
-- Đóng hộp thoại hoặc nhấn Escape, đổi thuật toán: không bật lại thông báo cho cùng bảng. Hoàn tác về bảng chưa xong rồi giải lại: thông báo xuất hiện lại.
+- Đóng hộp thoại hoặc nhấn Escape, đổi thuật toán: không bật lại thông báo cho cùng bảng. Reload/quay lại màn đã ghi nhận hoàn thành không chúc mừng lặp. Chơi lại xóa dấu hoàn thành; giải đúng lượt mới lại có thông báo.
 - Nút màn tiếp theo chuyển đúng màn. Ở màn cuối, ưu tiên màn cùng game còn thiếu rồi chuyển game còn chưa xong; khi vượt hết, ẩn nút tiếp và báo đã hoàn thành toàn bộ.
 - Reload một bảng đã giải vẫn xác nhận lại với Python và cho xem kết quả; kết quả xác nhận chậm của bảng cũ không mở hộp thoại trên bảng mới.
 
@@ -40,6 +40,7 @@
 5. Dừng Python, xin gợi ý: giao diện báo lỗi kết nối thay vì treo vô hạn.
 6. Thử chiều rộng 390 px, 768 px và 1366 px. Không có thanh cuộn ngang hoặc nút bị che.
 7. Dùng Tab/Enter để chơi, Escape đóng hộp thoại; trạng thái focus dễ nhìn.
+8. Dùng mũi tên/Home/End để chọn ô, bỏ qua tường Light Up; Shift + Enter xoay ngược/đặt dấu ×. Kiểm tra focus còn ở ô sau khi bảng vẽ lại và ô số không bị làm mờ.
 
 ## Tình huống hồi quy cần thử trên trình duyệt
 
@@ -57,3 +58,5 @@
 `python -m unittest discover -s tests -v` kiểm tra luật bằng oracle độc lập, cả hai solver trên 8 màn, bảo toàn nước đi, sửa mâu thuẫn, ngân sách, đầu vào API và WSGI.
 
 `node tests/check_frontend.mjs` đối chiếu luật, kiểm tra hoạt ảnh và các luồng thao tác bằng DOM giả lập. Không thay thế việc kiểm tra bố cục/cảm ứng trên trình duyệt thật. Kết quả đợt rà soát được ghi trong [QA_RESULTS.md](QA_RESULTS.md).
+
+`node tests/check_browser.mjs` chạy Chromium thật nếu Playwright/Chromium đã cài, tự mở server cổng trống rồi tắt khi xong, lưu ảnh vào tmp/browser. Xem README để cấu hình trình thông dịch và trình duyệt có sẵn.

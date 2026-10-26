@@ -101,6 +101,14 @@ Ví dụ:
 
 Chỉ số ô = `hàng * số_cột + cột`, bắt đầu từ 0. Pipes dùng `state.tiles` và `state.fixed`.
 
+## CLI, input riêng và tái lập
+
+`python -m logic_lab --level pipes-5 --algorithm dfs` chạy cùng bộ máy tìm kiếm mà không cần HTTP. `--input` nhận một bài hoặc danh sách bài JSON, có kiểm tra cấu trúc trong inputs.py; các mâu thuẫn luật được giữ để solver có thể trả unsat. Không nhận đáp án chứng kiến từ input. `--trace`, `--timeout`, `--max-nodes`, `--output` điều chỉnh việc giải; `--list` xuất các màn công khai.
+
+Benchmark mặc định đo 8 màn; `--suite extended` đo 26 input, thêm kích thước 4/6/8 với seed liên tiếp 101/102/103 cho mỗi game. `--input` đo bộ riêng. JSON giữ nguyên input và từng lượt đo, thông tin môi trường, ngân sách, mã băm; CSV hỗ trợ bảng báo cáo. Lượt bộ nhớ có ngân sách riêng do overhead tracemalloc. Thời gian/bộ nhớ công bố là search, loại trừ khởi tạo bài toán và UI/HTTP/trace.
+
+`frontier_peak` được cập nhật khi đưa node vào frontier: gốc bị loại có peak 0, gốc khả thi ít nhất 1. Đo bộ nhớ từ chối khởi động nếu đã có một phiên tracemalloc khác, tránh làm hỏng profiler của bên gọi. Hết ngân sách là limit; không gộp vào unsat hoặc thời gian giải thành công.
+
 ## Hướng phát triển tiếp
 
 - Gợi ý sửa ít lựa chọn nhất bằng bài toán tối ưu có trọng số.

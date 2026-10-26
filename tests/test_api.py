@@ -3,9 +3,37 @@ import json
 import unittest
 from logic_lab.http_api import route
 from wsgi import application
+from logic_lab.http_api import SEARCH_SLOTS
 
 
 class ApiTests(unittest.TestCase):
+    def test_malformed_origins_and_deep_json_return_errors(self):
+        for origin in ("http://[", "null", "http://localhost/path", "https://other.test"):
+            self.assertEqual(route("POST", "/api/check", b"{}", "application/json", origin, "localhost")[0], 403)
+        raw = b"[" * 1500 + b"0" + b"]" * 1500
+        self.assertEqual(route("POST", "/api/check", raw, "application/json")[0], 400)
+        self.assertEqual(route("POST", "/api/check", b"\xff", "application/json")[0], 400)
+
+    def test_bad_input_releases_search_capacity(self):
+        for payload in (None, [], {"level": []}, {"level": "pipes-3", "state": {"tiles": [0]}},
+                        {"level": "lightup-3", "algorithm": "bad", "state": {"bulbs": [0, 8]}}):
+            raw = json.dumps(payload).encode()
+            self.assertEqual(route("POST", "/api/hint", raw, "application/json")[0], 400)
+        self.assertTrue(SEARCH_SLOTS.acquire(blocking=False))
+        try:
+            self.assertTrue(SEARCH_SLOTS.acquire(blocking=False))
+            SEARCH_SLOTS.release()
+        finally:
+            SEARCH_SLOTS.release()
+
+    def test_busy_search_returns_retryable_error(self):
+        SEARCH_SLOTS.acquire()
+        SEARCH_SLOTS.acquire()
+        try:
+            self.assertEqual(route("POST", "/api/solve", b'{"level":"pipes-3"}', "application/json")[0], 429)
+        finally:
+            SEARCH_SLOTS.release()
+            SEARCH_SLOTS.release()
     def test_no_answers_exposed_in_level_listing(self):
         status, _, raw = route("GET", "/api/levels")
         self.assertEqual(status, 200)

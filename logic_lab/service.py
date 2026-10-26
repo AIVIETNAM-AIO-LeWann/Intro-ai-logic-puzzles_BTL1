@@ -12,7 +12,7 @@ def integer_list(value, label, max_length=200):
 
 
 def context(data):
-    if not isinstance(data, dict) or data.get("level") not in BY_ID:
+    if not isinstance(data, dict) or not isinstance(data.get("level"), str) or data["level"] not in BY_ID:
         raise ValueError("Màn chơi không tồn tại.")
     level = BY_ID[data["level"]]
     state = data.get("state", {})
@@ -55,6 +55,8 @@ def solve(data, trace=False):
 def hint(data):
     level, state, puzzle = context(data)
     algorithm = data.get("algorithm", "greedy")
+    if algorithm not in ("dfs", "greedy"):
+        raise ValueError("Thuật toán phải là dfs hoặc greedy.")
     if check(data)["solved"]:
         return {"status": "complete", "message": "Bạn đã giải đúng màn này. Mọi điều kiện đều được thỏa!"}
     result = search(puzzle, algorithm, timeout=4.0, max_nodes=80000)

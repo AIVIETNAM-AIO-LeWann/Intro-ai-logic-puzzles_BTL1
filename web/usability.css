@@ -11,6 +11,8 @@ dialog { max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overfl
 .demo-stat strong { overflow-wrap: anywhere; }
 #retry-win { margin-top: 12px; width: 100%; }
 .cell:focus-visible { outline-offset: -4px; z-index: 2; }
+/* Walls are puzzle clues, so their text must remain fully legible. */
+.lightup-board .cell.wall:disabled { opacity: 1; }
 #demo-scope-controls button { min-height: 44px; font-size: 12px; }
 @media (max-width: 600px) {
   .icon-button, #victory-close { min-width: 44px; min-height: 44px; }
